@@ -12,13 +12,13 @@ public class Program {
 
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
-		String s = "";
+		String inputstring = "";
 		String select = "";
 		Boolean notready = true;
 
 		while (notready == true) {
 			
-			while (s.equals("")) {
+			while (inputstring.equals("")) {
 				
 				System.out.println(" Vill du räkna bokstäver, ord eller båda ?  bokstäver = B ord = O båda = BO");
 	
@@ -26,44 +26,49 @@ public class Program {
 				
 				System.out.println("Skriv in din textstäng om du har ångrat vad som ska räknas tryck enter");
 				
-				s = input.readLine();
+				inputstring = input.readLine();
 	
 		
 
 		     } // while notready
-
+			
+			
+          if (inputstring.equals("")) {
+        	  // Do nothing
+        	  
+          } else {
+        	  
              if (select.equals("B")) {
-            	 printLetter(s);
+            	 printLetter(inputstring);
              } else if (select.equals("O")) {
-            	 printWord(s);
+            	 printWord(inputstring);
             	 
-             } else printAll(s);  
+             } else printAll(inputstring);  
+             inputstring = "";
              
-             notready = false;
+          }  
              
 		    
 		} // while true
 		
-   
-		
 	}
-    public static void printAll(String s) {
-    	printLetter(s);
-    	printWord(s); 	
+    public static void printAll(String inputstring) {
+    	printLetter(inputstring);
+    	printWord(inputstring); 	
     }
 
-    public static void printWord(String s ) {
+    public static void printWord(String inputstring ) {
     	
     	CountWord myContWord = new CountWord();
-    	int numword = myContWord.countWords(s);
+    	int numword = myContWord.countWords(inputstring);
 
 	    System.out.format(" Antal ord i textsträngen = %d ", numword);
     }
     
-    public static void printLetter( String s) {
+    public static void printLetter( String inputstring) {
     	
 	    CountLetter myContLetter = new CountLetter();
-	    int numletter = myContLetter.countLetter(s);
+	    int numletter = myContLetter.countLetter(inputstring);
 
         System.out.format(" Antal bokstäver i textsträngen = %d ", numletter);
     }
