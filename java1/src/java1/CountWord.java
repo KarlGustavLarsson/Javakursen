@@ -8,7 +8,7 @@ public class CountWord {
 
 	    int wordCount = 0;
 
-        String[] words = inputstring.split(" ");    
+        String[] words = inputstring.split("\\s+");    
         wordCount = words.length;
 	           
 	    return wordCount;
