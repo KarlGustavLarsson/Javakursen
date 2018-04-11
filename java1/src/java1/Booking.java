@@ -33,6 +33,9 @@ public class Booking {
 		return this.date;
 	}
 	
-	
+	@Override
+	public String toString(){
+		return "";
+	}
 
 }
