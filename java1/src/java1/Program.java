@@ -69,7 +69,10 @@ public class Program {
 					 
 					 if (bookingok == false) {
 						 System.out.print("Bokningstiden är upptagen prova en annan tid" + "\n" + "\n");
-						 //break;
+						 break;
+					 } else {
+						 System.out.print("Godkänd bokning" + "\n" + "\n");
+						 break;
 					 }
 					
 				}

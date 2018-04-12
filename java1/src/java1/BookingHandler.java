@@ -11,24 +11,40 @@ public class BookingHandler {
 	
 	
 	public Boolean checkBookingTime(Booking trybook) {
+		
+		    
 				
 			if (trybook.getStarttime().compareTo(trybook.getStopTime()) > 0) {
 				return false;
 			} else {
 				for (int i = 0; i < schedurlist.size(); i++) {
-					if (trybook.getStarttime().isBefore(schedurlist.get(i).getStarttime())) {
-						return true;
+											
+					
+					Boolean nyBokningFinnsRedan = trybook.getStarttime().equals(schedurlist.get(i).getStarttime()) &&
+                                                  trybook.getStopTime().equals(schedurlist.get(i).getStopTime());
+					
+					Boolean nyBokningStartInnanforBokning = trybook.getStarttime().isAfter(schedurlist.get(i).getStarttime()) &&
+							                                trybook.getStarttime().isBefore(schedurlist.get(i).getStopTime());
+							
+							
+					Boolean nyBokningStopInnanforBokning = trybook.getStopTime().isAfter(schedurlist.get(i).getStarttime()) &&
+							                               trybook.getStopTime().isBefore(schedurlist.get(i).getStopTime());
+					
+					
+					Boolean nyBokningOverlapparBefintligBokning = trybook.getStarttime().isBefore(schedurlist.get(i).getStarttime()) &&
+							trybook.getStopTime().isAfter(schedurlist.get(i).getStopTime());
+					
+					if(nyBokningStartInnanforBokning ||  
+					   nyBokningStopInnanforBokning  || 
+					   nyBokningOverlapparBefintligBokning ||
+					   nyBokningFinnsRedan) {
+						return false;
 					}
-					if (trybook.getStopTime().isBefore(schedurlist.get(i).getStarttime())) {
-						return true;
-					}
-					if (trybook.getStarttime().isAfter((schedurlist.get(i).getStopTime()))) {
-						return true;
-					}
+					
 				}
-				
+				return true;
 			}
-		   return false; 
+		  
 	}
 	
 	public Boolean addBookingTime(LocalTime starttime, LocalTime stoptime , LocalDate date) {
