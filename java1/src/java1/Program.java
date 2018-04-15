@@ -13,6 +13,7 @@ public class Program {
 		// TODO Auto-generated method stub
 		String number1 = "";
 		String number2 = "";
+		String number3 = "";
 		
 		ArrayList<Double> mynumbers = new ArrayList<Double>();
 
@@ -38,21 +39,25 @@ public class Program {
 				  try {
 					  
 					if (val.equals("D") || (val.equals("M")))    {
-						System.out.print("Mata in önskat nummer 1: ");  
+						System.out.print("Mata in önskat nummer 1 avsluta genom att skriva exit: ");  
 						number1 = input.readLine();
-						System.out.print("Mata in önskat nummer 2: ");  
+						System.out.print("Mata in önskat nummer 2 avsluta genom att skriva exit: ");  
 						number2 = input.readLine();
-						
-					} else {
+					
+					} else if (val.equals("A")|| (val.equals("S"))) {
 						System.out.print("Mata in önskat nummer 1: ");  
-						number1 = input.readLine();
+						number3 = input.readLine();
 					}
 					 
 
 				  } catch (IOException e ) {
 					  
 				     System.err.println("IOException: " + e.getMessage());
-				  } 
+				  
+			      } catch (NumberFormatException e) {
+			    	  System.err.println("NumberFormatException: " + e.getMessage());
+			    	  
+			      }
 					  
 				  MyCalculator  calc = new MyCalculator();  
 				  

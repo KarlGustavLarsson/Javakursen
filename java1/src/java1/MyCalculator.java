@@ -34,6 +34,14 @@ public class MyCalculator {
 		
 		for (int i = 0; i < numberlist.size() ;i++ ) {
 			sum  -= numberlist.get(i);
+			
+            if (i==0){
+                sum=numberlist.get(i);
+            }
+            else {
+                sum=sum-numberlist.get(i);
+            }
+
 		}
 		 
 		 printResult(sum);
