@@ -44,56 +44,86 @@ public class Program {
 				  break;
 			  }
 			     
-			  
-			  
 			  while(true) {
 				  
-				  try {
 					  
 					if (val.equals("D") || (val.equals("M")))    {
-						while (!number1.equals("exit") || !number2.equals("exit")) {
-						    System.out.print("Mata in önskat nummer 1 avsluta genom att skriva exit: ");  
-						    number1 = input.readLine();
-						    System.out.print("Mata in önskat nummer 2 avsluta genom att skriva exit: ");  
-						    number2 = input.readLine();
-						    if (!number1.equals("exit") || !number2.equals("exit")) {
-						    	result1 = Double.parseDouble(number1);
-				    		    result2 = Double.parseDouble(number2);
-						    	
-						    } else {
-						    	break;
+						while (!number1.equals("exit")) {
+						    System.out.print("Mata in önskat nummer 1 avsluta genom att skriva exit: ");
+						    try {
+						    	number1 = input.readLine();
+						    	if (!number1.equals("exit")) {
+						    		result1 = Double.parseDouble(number1);
+						    		numbercounter++;
+						    		break;
+						    	} else {
+						    		break;
+						   
+						    	}
+						    } catch (IOException e) {
+						    	 System.err.println("IOException: " + e.getMessage());
+							       continue;
+						    } catch (NumberFormatException e ) {
+						    	System.err.println("NumberFormatException: " + e.getMessage());
+						    	continue;
 						    }
 						    
-						}
+						}   // end while number 1
+						while ( !number1.equals("exit")) {
+						    System.out.print("Mata in önskat nummer 2 avsluta genom att skriva exit: ");  
+						    try {
+						    	number2 = input.readLine();
+						    	if (!number2.equals("exit")) {
+							    	result2 = Double.parseDouble(number2);
+							    	numbercounter++;
+							    	break;
+							    	
+						    	} else if (number2.equals("exit")) {
+						    		break;
+						    	}
+						    	
+						    	
+						    } catch (IOException e) {
+						    	 System.err.println("IOException: " + e.getMessage());
+							       continue;
+						    } catch (NumberFormatException e ) {
+						    	System.err.println("NumberFormatException: " + e.getMessage());
+						    	   continue;
+						    }	    					    
+						    
+						} //while number2
 					
 					} else if (val.equals("A")|| (val.equals("S"))) {
 						while (!number3.equals("exit")) {
 						      System.out.print("Mata in önskat nummer 1 avsluta genom att skriva exit: ");  
-						      number3 = input.readLine();
-						      if (!number3.equals("exit") ) {
-						    	  numbercounter++;
-						          result1 = Double.parseDouble(number3);
-						          mynumbers.add(result1);
-						          
-						      } else {
-						    	  break;
-						      }
+						     
+						      try {
+						    	  number3 = input.readLine();
+						    	  if (!number3.equals("exit")) {
+							          result1 = Double.parseDouble(number3);
+							          numbercounter++;
+							          mynumbers.add(result1);
+						    	  } else {
+						    		  break;
+						    	  }
+							    	
+							  } catch (IOException e) {
+							    	 System.err.println("IOException: " + e.getMessage());
+								       continue;
+							  } catch (NumberFormatException e ) {
+							    	System.err.println("NumberFormatException: " + e.getMessage());
+							    	   continue;
+							  }	
+						      
+						      
 						}
 					} else {
 						break;
 					}
 					 
 					
-				  } catch (IOException e ) {
-					  
-				       System.err.println("IOException: " + e.getMessage());
-				       continue;
-				     
-			      } catch (NumberFormatException e) {
-			    	   System.err.println("NumberFormatException: " + e.getMessage());
-			    	   continue;
 			    	  
-			      } 
+			    
 		    	  
 		          if (numbercounter < 2) { 
 		        	  System.out.println("Minst 2 nummer ska matas in ingen beräkning görs");
