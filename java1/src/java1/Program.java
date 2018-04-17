@@ -11,14 +11,14 @@ public class Program {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		String number1 = "";
-		String number2 = "";
-		String number3 = "";
-		int numbercounter = 0;
-		double result1 = 0;
-		double result2 = 0;
+		String number1 = "";  // Holds first input number in multiply and divide
+		String number2 = "";  // Holds second input number in multiply and divide
+		String number3 = "";  // Holds input number in add an subtract
+		int numbercounter = 0; // Count number to be added, divided,subtracted, multiply
+		double result1 = 0;    // Hold first number in add and subtract
+		double result2 = 0;    // Hold second number in add and subtract
 		
-		ArrayList<Double> mynumbers = new ArrayList<Double>();
+		ArrayList<Double> mynumbers = new ArrayList<Double>(); // Holds numbers for add and subtract
 
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
 		
@@ -37,7 +37,7 @@ public class Program {
 			  number1 = "";
 			  number2 = "";
 			  number3 = "";
-			  mynumbers.clear();
+			  mynumbers.clear();   
 			  numbercounter = 0;
 			  
 			  if( val.equals("exit")) {
