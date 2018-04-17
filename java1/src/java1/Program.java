@@ -10,6 +10,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Scanner;
+import java.io.IOException;
+
+import javax.imageio.IIOException;
+
 import java.util.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -17,24 +21,42 @@ import java.time.format.DateTimeParseException;
 public class Program {
 	
 
-	public static void main(String[] args) throws ParseException, IOException {
+	public static void main(String[] args)  {
 		
 		Boolean bookingok;
+		LocalDate bdate=null;               // Date for booking
+		LocalTime bstarttime=null;          // Start time for booking
+		LocalTime bstoptime=null;           // Stop time for booking
 		
 		BookingHandler mybooking = new BookingHandler();
 		
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
 		
 		while (true) {
-			 System.out.print("********************************" + "\n");
-			 System.out.print("            TIDBOKNINING        " + "\n");
-			 System.out.print("********************************" + "\n");
-		     System.out.print("                                " + "\n");
-		     System.out.print(" För att visa bokade tider (A)  " + "\n");
-		     System.out.print(" För att boka              (B)  " + "\n");
-		     System.out.print("********************************" + "\n");
+			 System.out.print("********************************"    +   "\n");
+			 System.out.print("            TIDBOKNINING        "    +   "\n");
+			 System.out.print("********************************"    +   "\n");
+		     System.out.print("                                "    +   "\n");
+		     System.out.print(" För att visa bokade tider (A)  "    +   "\n");
+		     System.out.print(" För att boka              (B)  "    +   "\n");
+		     System.out.print(" För att avsluta           (exit) "  +   "\n");
+		     System.out.print("********************************"    +   "\n");
 		     
-		     String val = input.readLine();
+		    
+		     String val="";
+		     bdate     =null;   // reset before next booking
+			 bstarttime=null;   // reset before next booking     
+			 bstoptime =null;   // reset before next booking
+			  
+		     try {
+		    	  val = input.readLine();
+		    	 
+		     } catch(IOException ex) { 
+		         System.out.println("IOException");
+		     }
+		     if (val.equals("exit")) {
+		    	 break;
+		     }
 		     
 			while (true) {
 				
@@ -44,41 +66,35 @@ public class Program {
 			     } else if (val.equals("B")) {
 			    	
 			     } else {
-			    	 System.out.print("Felaktikt val endast A eller B är giltigt" + "\n");
+			    	 System.out.print("Felaktikt val endast A, B eller exit är giltigt" + "\n");
 			    	 break;
 			     }
+			     while (bdate == null) {
+				    System.out.print("Datum (ÅÅÅÅ-MM-DD): ");
+				    bdate = mybooking.handleDateError(input);
+			     }
+				 System.out.println();
+			     while (bstarttime == null) {
+			    	System.out.print("Starttid (Timme:min): ");
+				    bstarttime = mybooking.handleTimeError(input);
+			     }
+			     System.out.println();
+			     while (bstoptime == null) {
+			    	    System.out.print("Sluttid (Timme:min): ");
+					    bstoptime= mybooking.handleTimeError(input);
+				     }
+			     System.out.println();
 			
-				
-				try {
-					 System.out.print("Datum (ÅÅÅÅ-MM-DD): ");
-					 String date = input.readLine();
-					 System.out.println();
-					 System.out.print("Starttid (Timme:min): ");
-					 String time = input.readLine();
-					 System.out.println();
-					 System.out.print("Sluttid (Timme:min): ");
-					 String time2 = input.readLine();
-					 System.out.println();
-					 DateTimeFormatter formatterdate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-					 DateTimeFormatter formattertime = DateTimeFormatter.ofPattern("HH:mm");
-					 LocalDate bdate = LocalDate.parse(date, formatterdate);
-					 LocalTime bstarttime = LocalTime.parse(time, formattertime);
-					 LocalTime bstoptime = LocalTime.parse(time2, formattertime); 
-				
-					 bookingok = mybooking.addBookingTime(bstarttime, bstoptime, bdate);
-					 
-					 if (bookingok == false) {
-						 System.out.print("Bokningstiden är upptagen prova en annan tid" + "\n" + "\n");
-						 break;
-					 } else {
-						 System.out.print("Godkänd bokning" + "\n" + "\n");
-						 break;
-					 }
+				 bookingok = mybooking.addBookingTime(bstarttime, bstoptime, bdate);
+				 
+				 if (bookingok == false) {
+					 System.out.print("Bokningstiden är upptagen prova en annan tid" + "\n" + "\n");
+					 break;
+				 } else {
+					 System.out.print("Godkänd bokning" + "\n" + "\n");
+					 break;
+				 }
 					
-				}
-				catch (DateTimeParseException exc) {
-					
-				}
 					
 			} // while
 		
