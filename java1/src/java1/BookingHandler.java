@@ -53,12 +53,16 @@ public class BookingHandler {
 	}
 	
 	public Boolean addBookingTime(LocalTime starttime, LocalTime stoptime , LocalDate date) {
+		
+		
 		  
 	   Booking booking = new Booking();
 	   
 	   booking.setStartTime(starttime);
 	   booking.setStoptTime(stoptime);
 	   booking.setDate(date);
+	   
+	   
 	   
 	   Boolean bookcheck = checkBookingTime(booking);
 	   

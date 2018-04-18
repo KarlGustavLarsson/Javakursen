@@ -80,9 +80,9 @@ public class Program {
 			     }
 			     System.out.println();
 			     while (bstoptime == null) {
-			    	    System.out.print("Sluttid (Timme:min): ");
-					    bstoptime= mybooking.handleTimeError(input);
-				     }
+			    	 System.out.print("Sluttid (Timme:min): ");
+					 bstoptime= mybooking.handleTimeError(input);
+				 }
 			     System.out.println();
 			
 				 bookingok = mybooking.addBookingTime(bstarttime, bstoptime, bdate);
