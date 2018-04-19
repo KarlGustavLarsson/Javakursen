@@ -1,10 +1,14 @@
 package java1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class ArrayHandling {
+public class ArrayHandling<integer, index, animal> {
 	
 	
 	public void getDoublesFromArray(int[] arr) {
@@ -24,14 +28,33 @@ public class ArrayHandling {
 	}
 	
 	public void addValueToTheEnd(int[] arr) {
-		System.out.println("ADD");
+		
+		List<Integer> lst = new ArrayList<Integer>();
+		
+		for (int i = 0; i < arr.length; i++) { 
+			lst.add(arr[i]);
+		}
+		
+		System.out.println("Input");
+		System.out.println(lst.toString());
+		System.out.println("Output after append to end");
+		lst.add(100);
+		System.out.println(lst.toString());
 		
 	}
 	
 	public void removeValueFromBegin(int[] arr) {
-		
-		System.out.println("REMOVE");
-		
+		int n = arr.length-1;
+		int[] nyarr = new int[n]; 
+		for (int i = 1; i < arr.length; i++) { 
+			
+			nyarr[i-1] = arr[i];
+		}
+
+		System.out.println("Input");
+		System.out.println(Arrays.toString(arr));
+		System.out.println("Output remove first element");
+		System.out.println(Arrays.toString(nyarr));
 	}
 	
 	
@@ -50,11 +73,26 @@ public class ArrayHandling {
 	}
 	
 	
-	public void createMapWithKeys(int[] arr) {
+	public void createMapWithKeys(int[] index, String[] animal) {
 		
-		System.out.println("MAP");
+		
+		Map <Integer, String> numAnimal = new HashMap<>();
+		
+		for (int i = 0; i < animal.length; i++) { 
+			numAnimal.put(index[i], animal[i]);
+		}
+	     
+		System.out.println("Input");
+		System.out.println(Arrays.toString(index));
+		System.out.println(Arrays.toString(animal));
+		System.out.println("Output");
+		System.out.println(numAnimal.keySet().toString());
+		System.out.println(numAnimal.values().toString());
+		
 		
 	}
+	
+	  
 
 
 }

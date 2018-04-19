@@ -8,6 +8,8 @@ import java.io.IOException;
 public class Program {
 	
 	static int[] arr = new int[]{1,2,3,4,5,5,6,6};
+	static String[] myStringArr = new String[]{"katt","hund","björn","älg","fågel","fisk","apa","ren"};
+	static int[] myIntArr = new int[]{1,2,3,4,5,6,7,8};
 	
 
 	public static void main(String[] args) {
@@ -60,7 +62,7 @@ public class Program {
 			    	   	myArrHandling.removeValueFromBegin(arr);
 				      break;  
 			    	case "5":
-			    		myArrHandling.createMapWithKeys(arr);
+			    		myArrHandling.createMapWithKeys(myIntArr, myStringArr);
 					   break; 
 					 default:
 					    System.out.println("Felaktikt värde i switch");
