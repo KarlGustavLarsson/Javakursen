@@ -3,6 +3,8 @@ package java1;
 import java.io.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.IOException;
 
 public class Program {
@@ -12,7 +14,11 @@ public class Program {
 	static int[] myIntArr = new int[]{1,2,3,4,5,6,7,8};
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		
+		
+		List<Integer> convertlst = new ArrayList<Integer>();
+		int[] arr = new int[];
 		
 		
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
@@ -31,6 +37,7 @@ public class Program {
 		     System.out.print("********************************"      +   "\n");
 		     
 		     String val = "";
+		     String value="";
 		     
 		     ArrayHandling myArrHandling = new  ArrayHandling();
 		     
@@ -51,6 +58,16 @@ public class Program {
 		    	 switch (val) {  
 		    	    case "1":
 		    	    	myArrHandling.getDoublesFromArray(arr);
+		    	    	
+		    	    	while (value != null) {
+		    	    	       value  = input.readLine();
+		    	    	       int valueint = Integer.parseInt(value);
+		    	    	       convertlst.add(valueint);
+		    	    	}
+		    	    	Integer[] arrs = new Integer[convertlst.size()];
+		    	    	convertlst.toArray(arrs);
+		    	    
+		    	    	
 		    	      break;
 		    	    case "2":
 		    	    	myArrHandling.getDoublesUseSet(arr);

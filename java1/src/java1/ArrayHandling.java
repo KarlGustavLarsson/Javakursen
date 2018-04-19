@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -76,23 +77,25 @@ public class ArrayHandling<integer, index, animal> {
 	public void createMapWithKeys(int[] index, String[] animal) {
 		
 		
-		Map <Integer, String> numAnimal = new HashMap<>();
+		Map <Integer, String> numAnimal = new LinkedHashMap<>();
 		
 		for (int i = 0; i < animal.length; i++) { 
 			numAnimal.put(index[i], animal[i]);
 		}
+		
 	     
 		System.out.println("Input");
 		System.out.println(Arrays.toString(index));
 		System.out.println(Arrays.toString(animal));
 		System.out.println("Output");
-		System.out.println(numAnimal.keySet().toString());
-		System.out.println(numAnimal.values().toString());
-		
+		numAnimal.forEach((key,value) -> System.out.println(key+":"+value));
 		
 	}
 	
-	  
+	public void createIntArray(String number) {
+		
+	}
+	
 
 
 }
