@@ -28,7 +28,7 @@ public class ArrayHandling<integer, index, animal> {
 		}
 	}
 	
-	public void addValueToTheEnd(int[] arr) {
+	public void addValueToTheEnd(int[] arr, int valuelast) {
 		
 		List<Integer> lst = new ArrayList<Integer>();
 		
@@ -39,17 +39,23 @@ public class ArrayHandling<integer, index, animal> {
 		System.out.println("Input");
 		System.out.println(lst.toString());
 		System.out.println("Output after append to end");
-		lst.add(100);
+		lst.add(valuelast);
 		System.out.println(lst.toString());
 		
 	}
 	
-	public void removeValueFromBegin(int[] arr) {
+	public void removeValueFromBegin(int[] arr, int valuefirst) {
 		int n = arr.length-1;
 		int[] nyarr = new int[n]; 
+		Boolean first = false; 
 		for (int i = 1; i < arr.length; i++) { 
 			
-			nyarr[i-1] = arr[i];
+			if (arr[i] == valuefirst && first==false) {
+				first = true;
+				
+			} else {
+				nyarr[i-1] = arr[i];
+			}
 		}
 
 		System.out.println("Input");
@@ -92,10 +98,17 @@ public class ArrayHandling<integer, index, animal> {
 		
 	}
 	
-	public void createIntArray(String number) {
+	public int[] convertListToArray(List<Integer> convertlst) {
 		
+		 int[] array = new int[convertlst.size()];
+		 
+		 for (int i = 0; i < convertlst.size(); i++) { 
+			 array[i] = convertlst.get(i);
+		 }
+    	
+		 return array ;
 	}
 	
-
+	         
 
 }
