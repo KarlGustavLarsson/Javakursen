@@ -13,6 +13,8 @@ public class ArrayHandling<integer, index, animal> {
 	
 	
 	public void getDoublesFromArray(int[] arr) {
+		int[] nyarr = new int[arr.length];
+		 Arrays.sort(arr);
 		
 		System.out.println("Input");
 		System.out.println(Arrays.toString(arr));
@@ -20,11 +22,17 @@ public class ArrayHandling<integer, index, animal> {
 		
 		for (int i = 0; i < arr.length; i++) { 
 			for (int j = i + 1 ; j < arr.length; j++) {
-				 if (arr[i]==arr[j]) {   // got the duplicate element 
-					 
-					 System.out.println(arr[i]);
-				 }
-			}  
+			   if (arr[i]==arr[j]) {
+				   
+				   System.out.println(arr[i]);
+				   
+			   } else {
+				   nyarr[i] = arr[i];
+				   System.out.println(nyarr[i]);
+			   }
+			}
+			
+			
 		}
 	}
 	
@@ -47,15 +55,25 @@ public class ArrayHandling<integer, index, animal> {
 	public void removeValueFromBegin(int[] arr, int valuefirst) {
 		int n = arr.length-1;
 		int[] nyarr = new int[n]; 
+		int counter = 0;
 		Boolean first = false; 
-		for (int i = 1; i < arr.length; i++) { 
+		for (int i = 0; i < arr.length; i++) { 
 			
-			if (arr[i] == valuefirst && first==false) {
+			 if (arr[i] == valuefirst) {
+				     
+			 } else {
+				 nyarr[i-1] = arr[i];  // oms lägg till specialhantering för index 0
+			 }
+			
+			/*if (arr[i] == valuefirst && first==false) {
 				first = true;
+				counter = i;
 				
+			} else  if (counter == 0) {
+				       nyarr[i] = arr[i];
 			} else {
-				nyarr[i-1] = arr[i];
-			}
+				nyarr[counter-1] = arr[i];
+			} */
 		}
 
 		System.out.println("Input");
