@@ -13,27 +13,36 @@ public class ArrayHandling<integer, index, animal> {
 	
 	
 	public void getDoublesFromArray(int[] arr) {
-		int[] nyarr = new int[arr.length];
-		 Arrays.sort(arr);
+		
+		List<Integer> lst = new ArrayList<Integer>();
+		Boolean exist = false;
+		lst.clear();
 		
 		System.out.println("Input");
 		System.out.println(Arrays.toString(arr));
-		System.out.println("Output doubles");
+		System.out.println("Output");
+		lst.add(arr[0]);
 		
 		for (int i = 0; i < arr.length; i++) { 
-			for (int j = i + 1 ; j < arr.length; j++) {
-			   if (arr[i]==arr[j]) {
-				   
-				   System.out.println(arr[i]);
-				   
-			   } else {
-				   nyarr[i] = arr[i];
-				   System.out.println(nyarr[i]);
-			   }
+			
+			for (int j = 0; j < lst.size(); j++) { 
+			   if (arr[i]==lst.get(j)) {
+				   exist = true;
+			   } 
+			
 			}
-			
-			
+            if (exist != true) {
+            	lst.add(arr[i]);
+            } else {
+            	exist = false;
+            }
 		}
+		
+		int [] ints = lst.stream().mapToInt(Integer::intValue).toArray();  // convert list to array
+		
+		System.out.println(Arrays.toString(ints));
+		
+		
 	}
 	
 	public void addValueToTheEnd(int[] arr, int valuelast) {
@@ -59,21 +68,15 @@ public class ArrayHandling<integer, index, animal> {
 		Boolean first = false; 
 		for (int i = 0; i < arr.length; i++) { 
 			
-			 if (arr[i] == valuefirst) {
-				     
+			 if (arr[i] != valuefirst || first == true) {
+				 nyarr[counter] = arr[i]; 
+				 counter++;
 			 } else {
-				 nyarr[i-1] = arr[i];  // oms lägg till specialhantering för index 0
+			   first = true;
+			   counter=i;
 			 }
+			 
 			
-			/*if (arr[i] == valuefirst && first==false) {
-				first = true;
-				counter = i;
-				
-			} else  if (counter == 0) {
-				       nyarr[i] = arr[i];
-			} else {
-				nyarr[counter-1] = arr[i];
-			} */
 		}
 
 		System.out.println("Input");
