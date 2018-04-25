@@ -12,32 +12,33 @@ public class ItemStorage extends Storage<Item> {
 		
 	}
 	
-    public Item  crateItem(BufferedReader input) throws IOException {
+    public void crateItem(int artnr, double price, String description) throws IOException {
     	
-    	String artnr="";
-    	System.out.println("Mata in Artikelnr, Pris, Beskrivning, lagersaldo avlsuta med exit ");
-    	while (!artnr.equals("exit")) {
-    	
-    	  artnr              = input.readLine();
-    	  int convartnr      = Integer.parseInt(artnr);                    
-    	  String price       = input.readLine();
-    	  double convprice   = Double.parseDouble(price);
-    	  String description = input.readLine();
-    	  //String balance     = input.readLine();
-    	  //int convbalance    = Integer.parseInt(balance);
+
+    	  Item myItem = new Item(artnr, price,description);
     	 
-    	  
-    	  Item myItem = new Item(convartnr, convprice,description);
-    	
-    	
-    	  return myItem;
-    	  
-    	}
-    	
-    	return null;
     	   
+    	  this.mylist.add(myItem);  
+    	 
 	}
 	
+    public  Item  serchArticle(int input) {  
+ 	   
+ 	   //this.mylist.stream().filter(item -> item.getArtnumber() == input)
+    	System.out.println(input);
+ 		for (int i = 0; i < this.mylist.size(); i++) { 
+ 			
+ 			Item myItem = this.mylist.get(i);
+ 			if ( myItem.getArtnumber() == input) {
+ 				
+ 				 return myItem;
+ 			} 
+ 					
+ 		}
+            
+ 	    return null;
+    }
+    
 	
 
 }

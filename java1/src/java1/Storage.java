@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Storage<T> {
 	
- private List <T> mylist = new ArrayList<T> ();
+public List <T> mylist = new ArrayList<T> ();
 
 
  
@@ -15,7 +15,7 @@ public void  addToList(T someTypeofObject ) {
 }
  
 public void  removefromList(T someTypeofObject ) {
-	mylist.add(someTypeofObject);
+	mylist.remove(someTypeofObject);
 }
  
 

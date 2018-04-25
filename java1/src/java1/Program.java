@@ -12,13 +12,16 @@ public class Program {
 		
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
 		// ArrayHandling myArrHandling = new  ArrayHandling();
-		ItemStorage itemStorage = new ItemStorage();
-        ShoppingCart ShoppingCart= new ShoppingCart();
-          Item myItem;
+		ItemStorage  itemStorage = new ItemStorage();
+        ShoppingCart shoppingCart= new ShoppingCart();
+        Item myItem;
+        int artNum;
+        double price;
 	//	 Item myItem = new Item(1,  2,"hej" );
 		
 	//	itemStorage.addToList(myItem);
 		while (true) {
+			
 			 System.out.print("********************************"      +   "\n");
 			 System.out.print("           AFFÄR                "      +   "\n");
 			 System.out.print("********************************"      +   "\n");
@@ -27,7 +30,7 @@ public class Program {
 		     System.out.print(" Lägg till i kundkorg          (2)  "  +   "\n");
 		     System.out.print(" Ta bort från kundkorg         (3)  "  +   "\n");
 		     System.out.print(" Granska kundkorg              (4)  "  +   "\n");
-		     System.out.print(" Sök vara                      (5)  "  +   "\n");
+		     System.out.print(" Sök vara i lager              (5)  "  +   "\n");
 		     System.out.print(" Checka ut kundkorg            (6)  "  +   "\n");	     
 		     System.out.print(" För att avsluta           (exit) "    +   "\n");
 		     System.out.print("********************************"      +   "\n");
@@ -35,11 +38,10 @@ public class Program {
 		     
 		     /* Initiate different variables */
 		     
-		     String val = "";     
-		     String value="";
-		     int valueint=0;
-	    	 int valuelast=0; 
-	    	 int valuefirst=0;  
+		     String val = "";  
+		   
+		     
+		     
 	    	 
     	     try {
 		        val = input.readLine();
@@ -56,31 +58,76 @@ public class Program {
 	    		 
 	    		 switch (val) {  
 	    		    case "1":
-	    		    	 myItem = itemStorage.crateItem(input);
-	    		    	if (myItem!=null) {
-	    		    	   itemStorage.addToList(myItem);
-	    		    	}
+	    		    	 System.out.println("Mata in Artikelnr, Pris, Beskrivning för en vara: ");
+	    		    	 try {
+	    		    	 artNum              = Integer.parseInt(input.readLine());                   
+	    		    	 price               = Double.parseDouble(input.readLine());
+	    		    	 String description  = input.readLine();
+	    		    	 itemStorage.crateItem(artNum, price, description);
+	    		    	 } catch(NumberFormatException e) {
+	    		    		 System.out.println("Du kan endast ange siffror för Arikelnr och Pris");
+			    		     continue;
+	    		    	 }
 	    		    	break;
 	    		    case "2":
-	    		    	
-	    		    	Item myShoppItem = ShoppingCart.serchArticle();
-	    		    	if (myShoppItem!=null) {
-	    		    		ShoppingCart.addToList(myShoppItem);
-	    		    		itemStorage.removefromList(myShoppItem);
-	    		    	}
-	    		    	
+	    		    	System.out.println("Mata in Artikelnr för vald vara: ");
+	    		    	try {
+		    		    	artNum = Integer.parseInt(input.readLine());
+		    		    
+		    		    	Item myShoppItem = itemStorage.serchArticle(artNum);
+		    		    	if (myShoppItem!=null) {
+		    		    		shoppingCart.addToList(myShoppItem);
+		    		    		itemStorage.removefromList(myShoppItem);
+		    		    		//System.out.println(shoppingCart.toString());
+		    		    	} else {
+		    		    		System.out.println("Varan saknas ");
+		    		    	}
+		    		    } catch(NumberFormatException e) {
+		    		    	System.out.println("Du kan endast ange siffror för Arikelnr");
+		    		    	continue;
+		    		    	
+		    		    }
 	    		    	break;
 	    		    case "3":
-	    		    	
+	    		    	 System.out.println("Ta bort vara, mata in Artikelnr:  ");
+	    		    	 try {
+			    		    	
+		    		    	 artNum = Integer.parseInt(input.readLine());
+		    		    	 myItem = shoppingCart.serchArticle(artNum);
+		    		    	 if (myItem!=null) {
+		    		    		shoppingCart.removefromList(myItem);
+		    		    		itemStorage.addToList(myItem);
+		    		    	 } else {
+		    		    		System.out.println("Varan bortagen från kundkorg");
+		    		    	 }
+		    		    	
+	    		    		 
+	    		    	 } catch(NumberFormatException e) {
+	    		    		 System.out.println("Du kan endast ange siffror för Arikelnr");
+			    		     continue;
+	    		    	 }
 	    		    	break;
 	    		    case "4": 
-	    		    	
+	    		    	shoppingCart.showShoppingBasket();
 	    		    	break;
 	    		    case "5": 
-	    		    	
+	    		    	System.out.println("Mata in Artikelnr för varan du söker: ");
+	    		    	try {  
+		    		    	artNum = Integer.parseInt(input.readLine());
+		    		    	myItem = itemStorage.serchArticle(artNum);
+		    		    	if (myItem!=null) {
+		    		    		System.out.println(myItem.toString());
+		    		    	} else {
+		    		    		System.out.println("Varan saknas ");
+		    		    	}
+		    		    	
+	    		    	}	catch(NumberFormatException e) {
+	    		    		System.out.println("Du kan endast ange siffror för Arikelnr");
+			    		    continue;
+	    		    	}
 	    		    	break;
 	    		    case "6": 
-	    		    	
+	    		    	shoppingCart.checkOutShoppingBasket();
 	    		    	break;	
 	    		 
 	    		    default:

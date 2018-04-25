@@ -29,20 +29,14 @@ public class Item {
 	public int getbalance() {
 		return balance;
 	}
-	/*public void setBalance(int balance) {
-		this.balance = balance;
-	}
 	
-	public String getDecription() {
-		return decription;
-	} */
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}
 
 	@Override
 	public String toString() {
-		return "Item [artnumber=" + artnumber + ", price=" + price + ", decription=" + decription + "]";
+		return "Item [artikelnummer=" + artnumber + ", pris=" + price + ", beskrivning=" + decription + "]";
 	}
 	
 	
