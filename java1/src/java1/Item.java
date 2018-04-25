@@ -30,6 +30,9 @@ public class Item {
 		return balance;
 	}
 	
+	public String getDecription() {
+		    return decription;
+	}
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}

@@ -17,6 +17,7 @@ public class Program {
         Item myItem;
         int artNum;
         double price;
+        String myInput="";
 	//	 Item myItem = new Item(1,  2,"hej" );
 		
 	//	itemStorage.addToList(myItem);
@@ -70,23 +71,24 @@ public class Program {
 	    		    	 }
 	    		    	break;
 	    		    case "2":
-	    		    	System.out.println("Mata in Artikelnr för vald vara: ");
+	    		    	System.out.println("Mata in Artikelnr för vara eller sök med fritext: ");
 	    		    	try {
-		    		    	artNum = Integer.parseInt(input.readLine());
-		    		    
-		    		    	Item myShoppItem = itemStorage.serchArticle(artNum);
-		    		    	if (myShoppItem!=null) {
-		    		    		shoppingCart.addToList(myShoppItem);
-		    		    		itemStorage.removefromList(myShoppItem);
-		    		    		//System.out.println(shoppingCart.toString());
-		    		    	} else {
-		    		    		System.out.println("Varan saknas ");
-		    		    	}
-		    		    } catch(NumberFormatException e) {
-		    		    	System.out.println("Du kan endast ange siffror för Arikelnr");
+	    		    		myInput = input.readLine();
+		    		    	artNum = Integer.parseInt(myInput);
+	    		        } catch(NumberFormatException e) {
+		    		    	itemStorage.showStorage(myInput);
 		    		    	continue;
 		    		    	
 		    		    }
+	    		    	Item myShoppItem = itemStorage.serchArticle(artNum);
+	    		    	if (myShoppItem!=null) {
+	    		    		shoppingCart.addToList(myShoppItem);
+	    		    		itemStorage.removefromList(myShoppItem);
+	    		    		//System.out.println(shoppingCart.toString());
+	    		    	} else {
+	    		    		System.out.println("Varan saknas ");
+	    		    	}
+		    		
 	    		    	break;
 	    		    case "3":
 	    		    	 System.out.println("Ta bort vara, mata in Artikelnr:  ");

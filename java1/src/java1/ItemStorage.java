@@ -29,7 +29,7 @@ public class ItemStorage extends Storage<Item> {
  		for (int i = 0; i < this.mylist.size(); i++) { 
  			
  			Item myItem = this.mylist.get(i);
- 			if ( myItem.getArtnumber() == input) {
+ 			if ( myItem.getArtnumber() == input || myItem.getDecription().contains(s)) {
  				
  				 return myItem;
  			} 
@@ -39,6 +39,23 @@ public class ItemStorage extends Storage<Item> {
  	    return null;
     }
     
-	
+    public  void  showStorage(String myInput) {  
+   	     if (myInput.isEmpty()) {
+		   	 for (int i = 0; i < this.mylist.size(); i++) { 
+		   			
+		   			Item myItem = this.mylist.get(i);
+		   			System.out.println(myItem.toString());
+		   			
+		   	 }
+   	     } else { 
+   	    	 for (int i = 0; i < this.mylist.size(); i++) { 
+	   			
+	   			Item myItem = this.mylist.get(i);
+	   			myItem.getDecription().contains(desc);
+	   			System.out.println(myItem.toString());
+	   			
+	   	 }
+   	     }
+    }
 
 }
