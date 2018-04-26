@@ -28,6 +28,13 @@ public class Program {
 		LocalTime bstarttime=null;          // Start time for booking
 		LocalTime bstoptime=null;           // Stop time for booking
 		
+		
+		HairDresser hairdresser1 = new HairDresser("Harry 1");
+		HairDresser hairdresser2 = new HairDresser("Harry 2");
+		HairDresser hairdresser3 = new HairDresser("Harry 3");
+		
+		
+		
 		BookingHandler mybooking = new BookingHandler();
 		
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
