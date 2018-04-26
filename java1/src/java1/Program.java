@@ -14,7 +14,8 @@ public class Program {
 		// ArrayHandling myArrHandling = new  ArrayHandling();
 		ItemStorage  itemStorage = new ItemStorage();
         ShoppingCart shoppingCart= new ShoppingCart();
-        Item myItem;
+        Item myItem=null;
+        boolean artexist = false;
         Item myShoppItem=null;
         int artNum=0;
         double price;
@@ -81,9 +82,9 @@ public class Program {
 	    		    		}
 		    		    	artNum = Integer.parseInt(myInput);
 	    		        } catch(NumberFormatException e) {
-	    		        	 myShoppItem = itemStorage.serchArticle(artNum, myInput);
+	    		        	 myShoppItem = itemStorage.moveArticleToBaket(artNum, myInput);
 		    		    }
-	    		    	myShoppItem = itemStorage.serchArticle(artNum, myInput);
+	    		    	myShoppItem = itemStorage.moveArticleToBaket(artNum, myInput);
 	    		    	if (myShoppItem!=null) {
 	    		    		shoppingCart.addToList(myShoppItem);
 	    		    		itemStorage.removefromList(myShoppItem);
@@ -116,20 +117,15 @@ public class Program {
 	    		    	shoppingCart.showShoppingBasket();
 	    		    	break;
 	    		    case "5": 
-	    		    	System.out.println("Mata in Artikelnr för varan du söker: ");
-	    		    	try {  
-		    		    	artNum = Integer.parseInt(input.readLine());
-		    		    	myItem = itemStorage.serchArticle(artNum, " ");
-		    		    	if (myItem!=null) {
-		    		    		System.out.println(myItem.toString());
-		    		    	} else {
-		    		    		System.out.println("Varan saknas ");
-		    		    	}
-		    		    	
-	    		    	}	catch(NumberFormatException e) {
-	    		    		System.out.println("Du kan endast ange siffror för Arikelnr");
-			    		    continue;
-	    		    	}
+	    		    	String myString="";
+	    		    	String myNum="";
+	    		    	System.out.println("Mata in Artikelnr eller sök med fritext efter varor i lager: ");
+	    		        myString = input.readLine();
+		    		    myNum    = myString;
+	    		    	artexist = itemStorage.serchArticle(myNum, myString);
+	    		    	if (artexist==false) {
+	    		    		System.out.println("Varan saknas i lager ");
+	    		    	} 
 	    		    	break;
 	    		    case "6": 
 	    		    	shoppingCart.checkOutShoppingBasket();

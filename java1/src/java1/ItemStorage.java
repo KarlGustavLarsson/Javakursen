@@ -22,22 +22,39 @@ public class ItemStorage extends Storage<Item> {
     	 
 	}
 	
-    public  Item  serchArticle(int input, String myInput) {  
+    public  Boolean serchArticle(String artnr, String myInput) {  
  	   
  	   //this.mylist.stream().filter(item -> item.getArtnumber() == input)
-    	System.out.println(input);
+    	boolean artexist = false;
  		for (int i = 0; i < this.mylist.size(); i++) { 
  			
  			Item myItem = this.mylist.get(i);
- 			if ( myItem.getArtnumber() == input || myItem.getDecription().contains(myInput)) {
- 				
- 				 return myItem;
+ 			String mynum=String.valueOf(myItem.getArtnumber());
+ 			if ( mynum.contains(artnr)  || myItem.getDecription().contains(myInput)) {
+ 				 System.out.println(myItem.toString());
+ 				 artexist = true;
+ 				 System.out.println("artexit = true");
  			} 
  					
  		}
-            
- 	    return null;
+ 	    return artexist;
     }
+    
+    public  Item  moveArticleToBaket(int input, String myInput) {  
+  	   
+  	   //this.mylist.stream().filter(item -> item.getArtnumber() == input)
+     	System.out.println(input);
+  		for (int i = 0; i < this.mylist.size(); i++) { 
+  			
+  			Item myItem = this.mylist.get(i);
+  			if ( myItem.getArtnumber() == input || myItem.getDecription().contains(myInput)) {
+  				 
+  				 return myItem;
+  			} 		
+  		}
+             
+  	    return null;
+     }
     
     public  void  showStorage(String myInput) {  
    	     if (myInput.isEmpty()) {
