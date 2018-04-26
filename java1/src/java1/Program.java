@@ -15,7 +15,8 @@ public class Program {
 		ItemStorage  itemStorage = new ItemStorage();
         ShoppingCart shoppingCart= new ShoppingCart();
         Item myItem;
-        int artNum;
+        Item myShoppItem=null;
+        int artNum=0;
         double price;
         String myInput="";
 	//	 Item myItem = new Item(1,  2,"hej" );
@@ -71,16 +72,18 @@ public class Program {
 	    		    	 }
 	    		    	break;
 	    		    case "2":
-	    		    	System.out.println("Mata in Artikelnr för vara eller sök med fritext: ");
+	    		    
+	    		    	System.out.println("Mata in Artikelnr eller sök med fritext för att visa lager tryck Enter : ");
 	    		    	try {
 	    		    		myInput = input.readLine();
+	    		    		if (myInput.isEmpty()) {
+	    		    			itemStorage.showStorage(myInput);
+	    		    		}
 		    		    	artNum = Integer.parseInt(myInput);
 	    		        } catch(NumberFormatException e) {
-		    		    	itemStorage.showStorage(myInput);
-		    		    	continue;
-		    		    	
+	    		        	 myShoppItem = itemStorage.serchArticle(artNum, myInput);
 		    		    }
-	    		    	Item myShoppItem = itemStorage.serchArticle(artNum);
+	    		    	myShoppItem = itemStorage.serchArticle(artNum, myInput);
 	    		    	if (myShoppItem!=null) {
 	    		    		shoppingCart.addToList(myShoppItem);
 	    		    		itemStorage.removefromList(myShoppItem);
@@ -100,7 +103,7 @@ public class Program {
 		    		    		shoppingCart.removefromList(myItem);
 		    		    		itemStorage.addToList(myItem);
 		    		    	 } else {
-		    		    		System.out.println("Varan bortagen från kundkorg");
+		    		    		System.out.println("Varan saknades i kundkorgen");
 		    		    	 }
 		    		    	
 	    		    		 
@@ -116,7 +119,7 @@ public class Program {
 	    		    	System.out.println("Mata in Artikelnr för varan du söker: ");
 	    		    	try {  
 		    		    	artNum = Integer.parseInt(input.readLine());
-		    		    	myItem = itemStorage.serchArticle(artNum);
+		    		    	myItem = itemStorage.serchArticle(artNum, " ");
 		    		    	if (myItem!=null) {
 		    		    		System.out.println(myItem.toString());
 		    		    	} else {

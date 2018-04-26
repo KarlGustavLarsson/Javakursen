@@ -22,14 +22,14 @@ public class ItemStorage extends Storage<Item> {
     	 
 	}
 	
-    public  Item  serchArticle(int input) {  
+    public  Item  serchArticle(int input, String myInput) {  
  	   
  	   //this.mylist.stream().filter(item -> item.getArtnumber() == input)
     	System.out.println(input);
  		for (int i = 0; i < this.mylist.size(); i++) { 
  			
  			Item myItem = this.mylist.get(i);
- 			if ( myItem.getArtnumber() == input || myItem.getDecription().contains(s)) {
+ 			if ( myItem.getArtnumber() == input || myItem.getDecription().contains(myInput)) {
  				
  				 return myItem;
  			} 
@@ -47,15 +47,8 @@ public class ItemStorage extends Storage<Item> {
 		   			System.out.println(myItem.toString());
 		   			
 		   	 }
-   	     } else { 
-   	    	 for (int i = 0; i < this.mylist.size(); i++) { 
-	   			
-	   			Item myItem = this.mylist.get(i);
-	   			myItem.getDecription().contains(desc);
-	   			System.out.println(myItem.toString());
-	   			
-	   	 }
-   	     }
+   	     } 
+   	    	
     }
 
 }
