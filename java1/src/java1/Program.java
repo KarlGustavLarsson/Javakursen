@@ -129,6 +129,7 @@ public class Program {
 	    		    	break;
 	    		    case "6": 
 	    		    	shoppingCart.checkOutShoppingBasket();
+	    		    	shoppingCart.mylist.clear();
 	    		    	break;	
 	    		 
 	    		    default:
