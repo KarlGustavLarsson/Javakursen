@@ -23,7 +23,9 @@ public class Program {
 
 	public static void main(String[] args)  {
 		
-		Boolean bookingok;
+		Boolean bookingok1=false;
+		Boolean bookingok2=false;
+		Boolean bookingok3=false;
 		LocalDate bdate=null;               // Date for booking
 		LocalTime bstarttime=null;          // Start time for booking
 		LocalTime bstoptime=null;           // Stop time for booking
@@ -33,6 +35,8 @@ public class Program {
 		HairDresser hairdresser2 = new HairDresser("Harry 2");
 		HairDresser hairdresser3 = new HairDresser("Harry 3");
 		
+		  
+	
 		
 		
 		BookingHandler mybooking = new BookingHandler();
@@ -78,23 +82,30 @@ public class Program {
 			     }
 			     while (bdate == null) {
 				    System.out.print("Datum (ееее-MM-DD): ");
-				    bdate = mybooking.handleDateError(input);
+				    bdate = hairdresser1.handleDateError(input);
 			     }
 				 System.out.println();
 			     while (bstarttime == null) {
 			    	System.out.print("Starttid (Timme:min): ");
-				    bstarttime = mybooking.handleTimeError(input);
+				    bstarttime = hairdresser1.handleTimeError(input);
 			     }
 			     System.out.println();
 			     while (bstoptime == null) {
 			    	 System.out.print("Sluttid (Timme:min): ");
-					 bstoptime= mybooking.handleTimeError(input);
+					 bstoptime= hairdresser1.handleTimeError(input);
 				 }
 			     System.out.println();
 			
-				 bookingok = mybooking.addBookingTime(bstarttime, bstoptime, bdate);
-				 
-				 if (bookingok == false) {
+				 bookingok1 = hairdresser1.addBookingTime(bstarttime, bstoptime, bdate);
+				
+				 if (bookingok1==false) {
+				     bookingok2 = hairdresser2.addBookingTime(bstarttime, bstoptime, bdate,hairdresser1.getName());
+			     }
+				 if (bookingok2==false) {
+				     bookingok3 = hairdresser3.addBookingTime(bstarttime, bstoptime, bdate);
+		         }
+		
+				 if (bookingok1 == false && bookingok2 == false && bookingok3 == false) {
 					 System.out.print("Bokningstiden Дr upptagen prova en annan tid" + "\n" + "\n");
 					 break;
 				 } else {

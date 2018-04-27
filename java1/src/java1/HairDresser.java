@@ -12,6 +12,10 @@ public class HairDresser extends BookingHandler{
 		
 		// TODO Auto-generated constructor stub
 	}
+
+	public String getName() {
+		return name;
+	}
 	
 	
 
