@@ -1,6 +1,7 @@
 package java1;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class HairDresser extends BookingHandler{
 	
@@ -17,6 +18,18 @@ public class HairDresser extends BookingHandler{
 		return name;
 	}
 	
+	@Override
+	public void printBookingList() {
+		System.out.println(name.toString());
+		
+    	for (Booking booking : schedurlist) {
+    		System.out.println("Pris " + booking.getPrice());
+    		System.out.println(booking.toString());
+    		
+    	}
+    	
+	}
 	
 
+	
 }

@@ -10,8 +10,11 @@ import java.io.IOException;
 
 public class BookingHandler {
 	
-	private ArrayList<Booking> schedurlist = new ArrayList<Booking>();
+	protected ArrayList<Booking> schedurlist = new ArrayList<Booking>();
 	
+	public BookingHandler() {
+		
+	}
 	
 	
 	public Boolean checkBookingTime(Booking trybook) {
@@ -52,18 +55,30 @@ public class BookingHandler {
 		  
 	}
 	
-	public Boolean addBookingTime(LocalTime starttime, LocalTime stoptime , LocalDate date) {
-		
-		
-		  
+	public <price> Boolean addBookingTime(LocalTime starttime, LocalTime stoptime , LocalDate date, BufferedReader input   ) throws IOException {
+			     
+	   double price=0;
+	   boolean check=false;
 	   Booking booking = new Booking();
 	   
 	   booking.setStartTime(starttime);
 	   booking.setStoptTime(stoptime);
 	   booking.setDate(date);
 	   
+	   System.out.println("Ange pris för vald frisör: ");
 	   
-	   
+	   while (check==false) {
+		   try {
+		       price =  Double.parseDouble(input.readLine());
+		   } catch (NumberFormatException e) {
+			
+			   System.out.println("Ange pris med siffror: ");
+			 
+		   } 
+		   check=true;
+	   }
+	    
+	   booking.setPrice(price);
 	   Boolean bookcheck = checkBookingTime(booking);
 	   
 	   if (bookcheck == true) {
@@ -75,7 +90,9 @@ public class BookingHandler {
 		   
 	}
 	
-    public void printBookingList() {
+   
+
+	public void printBookingList() {
     	for (Booking booking : schedurlist) {
     		
     		System.out.println(booking.toString());
@@ -122,5 +139,13 @@ public class BookingHandler {
     	return btime;
 	}
 	
-
+    public void showHairDressers(ArrayList<HairDresser> hairDresserList) {
+     	for (HairDresser hair : hairDresserList) {
+        		
+        		System.out.println(hair.getName().toString());
+        		
+        		
+        }
+    }
+    
 }

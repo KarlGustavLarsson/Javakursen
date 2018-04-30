@@ -8,8 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.Scanner;
 import java.io.IOException;
 
 import javax.imageio.IIOException;
@@ -21,24 +19,19 @@ import java.time.format.DateTimeParseException;
 public class Program {
 	
 
-	public static void main(String[] args)  {
+	public static void main(String[] args) throws IOException  {
 		
-		Boolean bookingok1=false;
-		Boolean bookingok2=false;
-		Boolean bookingok3=false;
+		Boolean bookingok=false;
 		LocalDate bdate=null;               // Date for booking
 		LocalTime bstarttime=null;          // Start time for booking
 		LocalTime bstoptime=null;           // Stop time for booking
 		
 		
-		HairDresser hairdresser1 = new HairDresser("Harry 1");
-		HairDresser hairdresser2 = new HairDresser("Harry 2");
-		HairDresser hairdresser3 = new HairDresser("Harry 3");
 		
-		  
+		
+		ArrayList<HairDresser> hairDresserList = new ArrayList<HairDresser>();
 	
-		
-		
+		HairDresser hair = null;
 		BookingHandler mybooking = new BookingHandler();
 		
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
@@ -48,13 +41,18 @@ public class Program {
 			 System.out.print("            TIDBOKNINING        "    +   "\n");
 			 System.out.print("********************************"    +   "\n");
 		     System.out.print("                                "    +   "\n");
-		     System.out.print(" För att visa bokade tider (A)  "    +   "\n");
-		     System.out.print(" För att boka              (B)  "    +   "\n");
+		     System.out.print("                                "    +   "\n");
+		     System.out.print("                                "    +   "\n");
+		     System.out.print(" Lägg tii frisör             (1)"    +   "\n");
+		     System.out.print(" Visa tillgängliga frisörer  (2)"    +   "\n");
+		     System.out.print(" Visa bokade tider för frisör(3)"    +   "\n");
+		     System.out.print(" För att boka                (4)"    +   "\n");
 		     System.out.print(" För att avsluta           (exit) "  +   "\n");
 		     System.out.print("********************************"    +   "\n");
 		     
 		    
 		     String val="";
+		     String myHress ="";
 		     bdate     =null;   // reset before next booking
 			 bstarttime=null;   // reset before next booking     
 			 bstoptime =null;   // reset before next booking
@@ -70,49 +68,81 @@ public class Program {
 		     }
 		     
 			while (true) {
-				
-				if (val.equals("A")) { 
-			    	 mybooking.printBookingList();
-			    	break;
-			     } else if (val.equals("B")) {
-			    	
-			     } else {
-			    	 System.out.print("Felaktikt val endast A, B eller exit är giltigt" + "\n");
-			    	 break;
-			     }
-			     while (bdate == null) {
-				    System.out.print("Datum (ÅÅÅÅ-MM-DD): ");
-				    bdate = hairdresser1.handleDateError(input);
-			     }
-				 System.out.println();
-			     while (bstarttime == null) {
-			    	System.out.print("Starttid (Timme:min): ");
-				    bstarttime = hairdresser1.handleTimeError(input);
-			     }
-			     System.out.println();
-			     while (bstoptime == null) {
-			    	 System.out.print("Sluttid (Timme:min): ");
-					 bstoptime= hairdresser1.handleTimeError(input);
-				 }
-			     System.out.println();
-			
-				 bookingok1 = hairdresser1.addBookingTime(bstarttime, bstoptime, bdate);
-				
-				 if (bookingok1==false) {
-				     bookingok2 = hairdresser2.addBookingTime(bstarttime, bstoptime, bdate,hairdresser1.getName());
-			     }
-				 if (bookingok2==false) {
-				     bookingok3 = hairdresser3.addBookingTime(bstarttime, bstoptime, bdate);
-		         }
-		
-				 if (bookingok1 == false && bookingok2 == false && bookingok3 == false) {
-					 System.out.print("Bokningstiden är upptagen prova en annan tid" + "\n" + "\n");
-					 break;
-				 } else {
-					 System.out.print("Godkänd bokning" + "\n" + "\n");
-					 break;
-				 }
+				switch (val)   {
+				case "1":
+					String name;
+					System.out.println("Lägg till en ny frisör : ");
+					name = input.readLine();
+					HairDresser hairdresser = new HairDresser(name);
+					hairDresserList.add(hairdresser);
+					break;
+				case "2":
+					mybooking.showHairDressers(hairDresserList);
+					break;
+				case "3":
+					 System.out.print("Vilken frisör vill se bokningar för  ?" + "\n");
+					 myHress = input.readLine(); 
+					 
+					    // show booking   
+					 for (HairDresser dresser : hairDresserList) {
+						 
+						    if (dresser.getName().equals(myHress))  {
+						    	
+						    	dresser.printBookingList();
+			        	    }
+			    	 }
 					
+					mybooking.printBookingList();
+					break;
+				case "4":
+				     while (bdate == null) {
+						 System.out.print("Datum (ÅÅÅÅ-MM-DD): ");
+						 bdate = mybooking.handleDateError(input);
+					 }
+						 System.out.println();
+					 while (bstarttime == null) {
+					    System.out.print("Starttid (Timme:min): ");
+						bstarttime = mybooking.handleTimeError(input);
+						
+					 }
+					     System.out.println();
+					 while (bstoptime == null) {
+					     System.out.print("Sluttid (Timme:min): ");
+						 bstoptime= mybooking.handleTimeError(input);
+					 }
+					 System.out.println();
+					 
+					 System.out.print("Vilken frisör vill du ha ?" + "\n");
+					  myHress = input.readLine(); 
+					 
+					    // Try too book    
+					
+					 
+					 for (HairDresser dresser : hairDresserList) {
+						 
+						    if (dresser.getName().equals(myHress))  {
+						    	
+						    	bookingok = dresser.addBookingTime(bstarttime, bstoptime, bdate, input);
+			        	    }
+			    	 }
+					
+			
+					 if (bookingok == false) {
+						 System.out.print("Bokningstiden är upptagen prova en annan tid" + "\n" + "\n");
+						 break;
+					 } else {
+						 System.out.print("Godkänd bokning" + "\n" + "\n");
+						 break;
+					 }
+				default:
+					 System.out.print("Felaktikt val, använd endast giltiga val" + "\n");
+					break;
+					
+					
+				}
+				
+				break; // break out from while
+		  
 					
 			} // while
 		
