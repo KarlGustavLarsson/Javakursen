@@ -1,5 +1,6 @@
 package java1;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Person implements Runnable {
@@ -8,6 +9,7 @@ public class Person implements Runnable {
 	private int endfloornumber;
 	private String name;
 	private Random r; // Används för att kunna få ut slumpmässiga värden i likadana sekvenser mellan körningar.
+	public ArrayList<Integer> knapplista = new ArrayList<>();
 
 	
 
@@ -51,8 +53,8 @@ public class Person implements Runnable {
 
 
 	public void  setRandomNumbers() { 
-		this.setStartfloornumber(getRandomNumberInRange(1,8));
-		this.setEndfloornumber(getRandomNumberInRange(1,8));
+		this.setStartfloornumber(getRandomNumberInRange(1,3));
+		this.setEndfloornumber(getRandomNumberInRange(1,3));
 		
 		
 	}
@@ -72,7 +74,8 @@ public class Person implements Runnable {
 	@Override
 	public void run() {
 		  this.setRandomNumbers();
-		 // Betämm vart du vill åka när man står utanför hissen första gången 
+		  knapplista.add(this.getStartfloornumber());         
+		 
 		while (true) {
 			
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
