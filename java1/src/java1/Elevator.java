@@ -8,15 +8,16 @@ public class Elevator implements Runnable {
 	private int floor;
 	private ArrayList<Integer>  floorlist = new ArrayList<>();
 	private Boolean door;
-	private int currentFloor;
-	private ArrayList<Person> plist;
+	public int currentFloor=1;
+	//private ArrayList<Person> plist;
+	public  ArrayList<Integer> pushButtonList = new ArrayList<>();
 	
 	
 	
- public Elevator(ArrayList<Person> plist) {
+ public Elevator() {
 		super();
 		
-		this.plist = plist;
+		
 	}
  
  
@@ -41,12 +42,31 @@ public void moveUp() {
  
 public void moveDown() {
 	
-	if (currentFloor < topfloor) {
-	    currentFloor++;
+	if (currentFloor <= topfloor) {
+	    currentFloor--;
 	}
  }
 
-public void move(int mystartfloor ) {
+public void move(ArrayList<Integer> pushButtonList ) {
+	
+	for(int i=0; i < pushButtonList.size(); i++) {
+		
+		
+		if (currentFloor == pushButtonList.get(i)) {
+			System.out.print("Lika");
+			// Do something
+			
+		} else if (currentFloor < pushButtonList.get(i)) {
+			System.out.print("Cuuuent mindre");
+			moveUp();
+		} else { 
+			System.out.print("Cuuuent större");
+			moveDown();
+		}
+		
+	}
+	
+	
 	
 	    
  }
@@ -59,6 +79,7 @@ public void waitAttFloor() {
 
 public void WaitForNextAction() {
 	try {
+		
 		this.wait(200);
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
@@ -72,7 +93,19 @@ public void run() {
 	
 	while (true) {
 		
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	//  Vart ska jag åka?
+		if (!pushButtonList.isEmpty()) {
+			
+			move(pushButtonList);
+			
+		}
 		// Knapp tryckt på en våning?.
 		// Knapp i hiss är tryckt på våning.
 		
@@ -100,7 +133,7 @@ public void run() {
 	/* GAMLA KODEN */		
 			System.out.println(floorlist);
 			
-			this.WaitForNextAction();	
+		//	this.WaitForNextAction();	
 	} // while
 	
 } // run

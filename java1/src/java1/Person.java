@@ -9,14 +9,14 @@ public class Person implements Runnable {
 	private int endfloornumber;
 	private String name;
 	private Random r; // Används för att kunna få ut slumpmässiga värden i likadana sekvenser mellan körningar.
-	public ArrayList<Integer> knapplista = new ArrayList<>();
-
+	
+    public Elevator elev;
 	
 
-	public Person(int startfloornumber, String name ) {
+	public Person(String name, Elevator elev ) {
 		super();
-		this.startfloornumber =  startfloornumber;
 		this.name             =  name;
+		this.elev             =  elev;
 	
 	}
 
@@ -60,7 +60,7 @@ public class Person implements Runnable {
 	}
 	
 	
-	private static int getRandomNumberInRange(int min, int max) {
+	public  int getRandomNumberInRange(int min, int max) {
 
 		if (min >= max) {
 			throw new IllegalArgumentException("max must be greater than min");
@@ -74,14 +74,28 @@ public class Person implements Runnable {
 	@Override
 	public void run() {
 		  this.setRandomNumbers();
-		  knapplista.add(this.getStartfloornumber());         
-		 
+		       
+		
+		 elev.pushButtonList.add(this.startfloornumber);
 		while (true) {
 			
+			  try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
+			  if (this.getStartfloornumber() == elev.currentFloor && elev.getDoorOpen()== true) {
+				  
+			  }
              // liv in i hisss 
 			
 			 // Har hissen kommit till min slutdestination och är dörrarna öppna ?
+              if (this.getEndfloornumber() == elev.currentFloor && elev.getDoorOpen() == true) {
+				  
+			  }
 			
 			 // liv ut ur hiss
 			

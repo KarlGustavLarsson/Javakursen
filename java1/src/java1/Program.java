@@ -8,16 +8,16 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		ArrayList<Person> personlist = new ArrayList<Person>();
+		//ArrayList<Person> personlist = new ArrayList<Person>();
+		Elevator elevator =  new Elevator();
 		
 	
-		Person person1 =  new Person( 1, "Olle Olsson");
-		Person person2 =  new Person( 1, "Kurt Svensson");
+		Person person1 =  new Person( "Olle Olsson" , elevator);
+		Person person2 =  new Person( "Kurt Svensson", elevator);
 		
-		personlist.add(person1);
-		personlist.add(person2);
 		
-		Elevator elevator =  new Elevator(personlist);
+		
+		
 		
 		Thread elevthread = new Thread(elevator);
 
