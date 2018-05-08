@@ -7,14 +7,26 @@ public class Elevator implements Runnable {
 	private static int topfloor = 8;
 	private int floor;
 	private ArrayList<Integer>  floorlist = new ArrayList<>();
-	private Boolean door;
+	private Boolean door=false;
 	public int currentFloor=1;
 	//private ArrayList<Person> plist;
 	public  ArrayList<Integer> pushButtonList = new ArrayList<>();
 	
 	
 	
- public Elevator() {
+ public synchronized void setPushButtonList(ArrayList<Integer> pushButtonList) {
+		this.pushButtonList = pushButtonList;
+	}
+
+
+
+public synchronized int getCurrentFloor() {
+		return currentFloor;
+	}
+
+
+
+public Elevator() {
 		super();
 		
 		
@@ -22,17 +34,17 @@ public class Elevator implements Runnable {
  
  
 
-public Boolean getDoorOpen() {
+public synchronized  Boolean getDoorOpen() {
 		return door;
 	}
 
-	public void setDoorOpen(Boolean door) {
+public synchronized  void setDoorOpen(Boolean door) {
 		this.door = door;
 	}
 
 
 
-public void moveUp() {
+public synchronized void moveUp() {
 	
     if (currentFloor < topfloor) {
     	currentFloor++;
@@ -40,19 +52,20 @@ public void moveUp() {
 	 
  }
  
-public void moveDown() {
+public synchronized void moveDown() {
 	
 	if (currentFloor <= topfloor) {
 	    currentFloor--;
 	}
  }
 
-public void move(ArrayList<Integer> pushButtonList ) {
+public synchronized  void move(ArrayList<Integer> pushButtonList ) {
 	
 	for(int i=0; i < pushButtonList.size(); i++) {
 		
 		
 		if (currentFloor == pushButtonList.get(i)) {
+			this.setDoorOpen(true);
 			System.out.print("Lika");
 			// Do something
 			

@@ -5,13 +5,26 @@ import java.util.Random;
 
 public class Person implements Runnable {
 	
-	private int startfloornumber;
-	private int endfloornumber;
+	private int startfloornumber=0;
+	private int endfloornumber=1;
+	private boolean insideElevator;
 	private String name;
 	private Random r; // Används för att kunna få ut slumpmässiga värden i likadana sekvenser mellan körningar.
 	
     public Elevator elev;
 	
+
+	public boolean isInsideElevator() {
+		return insideElevator;
+	}
+
+
+
+	public void setInsideElevator(boolean insideElevator) {
+		this.insideElevator = insideElevator;
+	}
+
+
 
 	public Person(String name, Elevator elev ) {
 		super();
@@ -31,7 +44,7 @@ public class Person implements Runnable {
 		this.endfloornumber = endfloornumber;
 	}
 	
-	public int getStartfloornumber() {
+	public synchronized int getStartfloornumber() {
 		return startfloornumber;
 	}
 
@@ -77,6 +90,7 @@ public class Person implements Runnable {
 		       
 		
 		 elev.pushButtonList.add(this.startfloornumber);
+		
 		while (true) {
 			
 			  try {
@@ -87,14 +101,16 @@ public class Person implements Runnable {
 			}
 			
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
-			  if (this.getStartfloornumber() == elev.currentFloor && elev.getDoorOpen()== true) {
-				  
+			  if (this.getStartfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen()== true) {
+				  this.setInsideElevator(true);
+				  System.out.print("Hissdörr öppen ");
 			  }
              // liv in i hisss 
 			
 			 // Har hissen kommit till min slutdestination och är dörrarna öppna ?
-              if (this.getEndfloornumber() == elev.currentFloor && elev.getDoorOpen() == true) {
+              if (this.getEndfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen() == true) {
 				  
+            	  this.setInsideElevator(false);
 			  }
 			
 			 // liv ut ur hiss

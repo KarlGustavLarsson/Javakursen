@@ -30,6 +30,9 @@ public class Program {
        Thread personthread1  = new Thread(person1);
        personthread1.start();
        
+       Thread personthread2  = new Thread(person2);
+       personthread2.start();
+       
 		
 	}
 
