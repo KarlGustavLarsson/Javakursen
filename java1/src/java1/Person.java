@@ -89,7 +89,8 @@ public class Person implements Runnable {
 		  this.setRandomNumbers();
 		       
 		
-		 elev.pushButtonList.add(this.startfloornumber);
+		
+		 elev.updateUpdatePbList(this.startfloornumber);
 		
 		while (true) {
 			

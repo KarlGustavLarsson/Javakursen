@@ -18,6 +18,9 @@ public class Elevator implements Runnable {
 		this.pushButtonList = pushButtonList;
 	}
 
+ public synchronized void updateUpdatePbList(int value) {
+		this.pushButtonList.add(value);
+	}
 
 
 public synchronized int getCurrentFloor() {
