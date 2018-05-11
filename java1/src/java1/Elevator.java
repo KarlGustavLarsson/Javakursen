@@ -2,6 +2,8 @@ package java1;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Elevator implements Runnable { 
 	private static int topfloor = 8;
@@ -10,15 +12,22 @@ public class Elevator implements Runnable {
 	private Boolean door=false;
 	public int currentFloor=1;
 	//private ArrayList<Person> plist;
-	public  ArrayList<Integer> pushButtonList = new ArrayList<>();
+	//public  ArrayList<Integer> pushButtonList = new ArrayList<>();
+	public Set<Integer> pushButtonList = new HashSet<>();
+	
+	//public  ArrayList<Integer> pushButtonList = new ArrayList<>();
 	
 	
 	
- public synchronized void setPushButtonList(ArrayList<Integer> pushButtonList) {
+ public synchronized void setPushButtonListS(Set<Integer> pushButtonList) {
 		this.pushButtonList = pushButtonList;
 	}
 
- public synchronized void updateUpdatePbList(int value) {
+ public Set<Integer> getPushButtonList() {
+	return pushButtonList;
+}
+
+public synchronized void updateUpdatePbList(int value) {
 		this.pushButtonList.add(value);
 	}
 
@@ -62,21 +71,25 @@ public synchronized void moveDown() {
 	}
  }
 
-public synchronized  void move(ArrayList<Integer> pushButtonList ) {
+public synchronized  void move(Set<Integer> pushButtonList ) {
 	
+	pushButtonList.iterator().next().intValue();
 	for(int i=0; i < pushButtonList.size(); i++) {
+	
+		getPushButtonList().iterator().next().intValue();
 		
-		
-		if (currentFloor == pushButtonList.get(i)) {
+		if (currentFloor == pushButtonList.iterator().next().intValue()) {
 			this.setDoorOpen(true);
 			System.out.print("Lika");
 			// Do something
 			
-		} else if (currentFloor < pushButtonList.get(i)) {
+		} else if (currentFloor < pushButtonList.iterator().next().intValue()) {
 			System.out.print("Cuuuent mindre");
+			this.setDoorOpen(false);
 			moveUp();
 		} else { 
 			System.out.print("Cuuuent större");
+			this.setDoorOpen(false);
 			moveDown();
 		}
 		

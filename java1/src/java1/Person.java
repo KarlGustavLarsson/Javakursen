@@ -44,7 +44,7 @@ public class Person implements Runnable {
 		this.endfloornumber = endfloornumber;
 	}
 	
-	public synchronized int getStartfloornumber() {
+	public  int getStartfloornumber() {
 		return startfloornumber;
 	}
 
@@ -104,7 +104,7 @@ public class Person implements Runnable {
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
 			  if (this.getStartfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen()== true) {
 				  this.setInsideElevator(true);
-				  System.out.print("Hissdörr öppen ");
+				  System.out.print("Hissdörr öppen start destination");
 			  }
              // liv in i hisss 
 			
@@ -112,6 +112,7 @@ public class Person implements Runnable {
               if (this.getEndfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen() == true) {
 				  
             	  this.setInsideElevator(false);
+            	  System.out.print("Hissdörr öppen end destination");
 			  }
 			
 			 // liv ut ur hiss
