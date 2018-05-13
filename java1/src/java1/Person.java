@@ -100,9 +100,12 @@ public class Person implements Runnable {
 				e.printStackTrace();
 			}
 			// Väntar jag på att hissen ska komma upp till mitt våningsplan
+			  System.out.println("Väntar");
 			  
 			if (!isInsideElevator()  && elev.getDoorOpen() == false) {
 				 elev.addToPbList(this.startfloornumber);
+				 setStartfloornumber(this.startfloornumber);
+				 
 			}
 			  
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
@@ -114,6 +117,7 @@ public class Person implements Runnable {
 			  
 			if (isInsideElevator()  && elev.getDoorOpen() == false) {
 				elev.addToPbList(this.endfloornumber);
+				setStartfloornumber(this.endfloornumber);
 			}
 			
 			 // Har hissen kommit till min slutdestination och är dörrarna öppna ?

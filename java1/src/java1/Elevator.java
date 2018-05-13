@@ -10,7 +10,7 @@ public class Elevator implements Runnable {
 	private int floor;
 	private ArrayList<Integer>  floorlist = new ArrayList<>();
 	private Boolean door=false;
-	public int currentFloor=0;
+	public int currentFloor=1;
 	//private ArrayList<Person> plist;
 	//public  ArrayList<Integer> pushButtonList = new ArrayList<>();
 	public Set<Integer> pushButtonList = new HashSet<>();
@@ -77,9 +77,10 @@ public synchronized void moveDown() {
 public synchronized  void move(Set<Integer> pushButtonList ) throws InterruptedException {
 	
 	Boolean up=false;
-	for(int i=0; i < pushButtonList.size(); i++) {
+
+	for (Integer myvalue : pushButtonList) {
 		
-		if (currentFloor == pushButtonList.iterator().next().intValue()) {
+		if (currentFloor == myvalue.intValue()); {
 			this.setDoorOpen(true);
 			System.out.print("Lika");
 			Thread.sleep(1000);      // Väntar på passagerare
@@ -87,19 +88,19 @@ public synchronized  void move(Set<Integer> pushButtonList ) throws InterruptedE
 			// Do something
 		}
 	}
-	for(int i=0; i < pushButtonList.size(); i++) {	
+	for (Integer myvalue : pushButtonList) {	
 			
-			if (currentFloor < pushButtonList.iterator().next().intValue()) {
+			if (currentFloor < myvalue.intValue()); {
 				System.out.print("up = false");
-				up = false;
+				up = true;
 			} 
 			
 	}
-	for(int i=0; i < pushButtonList.size(); i++) {	
+	for (Integer myvalue : pushButtonList) {	
 		
-		if (currentFloor > pushButtonList.iterator().next().intValue()) {
+		if (currentFloor >  myvalue.intValue()); {
 			System.out.print("up = true");
-			up = true;
+			up = false;
 		} 
 		
      }
