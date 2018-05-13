@@ -10,7 +10,7 @@ public class Elevator implements Runnable {
 	private int floor;
 	private ArrayList<Integer>  floorlist = new ArrayList<>();
 	private Boolean door=false;
-	public int currentFloor=1;
+	public int currentFloor=0;
 	//private ArrayList<Person> plist;
 	//public  ArrayList<Integer> pushButtonList = new ArrayList<>();
 	public Set<Integer> pushButtonList = new HashSet<>();
@@ -27,10 +27,13 @@ public class Elevator implements Runnable {
 	return pushButtonList;
 }
 
-public synchronized void updateUpdatePbList(int value) {
+public synchronized void addToPbList(int value) {
 		this.pushButtonList.add(value);
 	}
 
+public synchronized void removeFromPbList(int value) {
+	this.pushButtonList.remove(value);
+}
 
 public synchronized int getCurrentFloor() {
 		return currentFloor;
@@ -71,30 +74,41 @@ public synchronized void moveDown() {
 	}
  }
 
-public synchronized  void move(Set<Integer> pushButtonList ) {
+public synchronized  void move(Set<Integer> pushButtonList ) throws InterruptedException {
 	
-	pushButtonList.iterator().next().intValue();
+	Boolean up=false;
 	for(int i=0; i < pushButtonList.size(); i++) {
-	
-		getPushButtonList().iterator().next().intValue();
 		
 		if (currentFloor == pushButtonList.iterator().next().intValue()) {
 			this.setDoorOpen(true);
 			System.out.print("Lika");
+			Thread.sleep(1000);      // Väntar på passagerare
+			this.setDoorOpen(false);
 			// Do something
-			
-		} else if (currentFloor < pushButtonList.iterator().next().intValue()) {
-			System.out.print("Cuuuent mindre");
-			this.setDoorOpen(false);
-			moveUp();
-		} else { 
-			System.out.print("Cuuuent större");
-			this.setDoorOpen(false);
-			moveDown();
 		}
-		
 	}
-	
+	for(int i=0; i < pushButtonList.size(); i++) {	
+			
+			if (currentFloor < pushButtonList.iterator().next().intValue()) {
+				System.out.print("up = false");
+				up = false;
+			} 
+			
+	}
+	for(int i=0; i < pushButtonList.size(); i++) {	
+		
+		if (currentFloor > pushButtonList.iterator().next().intValue()) {
+			System.out.print("up = true");
+			up = true;
+		} 
+		
+     }
+		
+	if (up==true) {
+		moveUp();
+	} else { 
+		moveDown();
+	}
 	
 	
 	    
@@ -132,7 +146,12 @@ public void run() {
 	//  Vart ska jag åka?
 		if (!pushButtonList.isEmpty()) {
 			
-			move(pushButtonList);
+			try {
+				move(pushButtonList);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		// Knapp tryckt på en våning?.

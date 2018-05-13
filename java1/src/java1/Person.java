@@ -6,8 +6,8 @@ import java.util.Random;
 public class Person implements Runnable {
 	
 	private int startfloornumber=0;
-	private int endfloornumber=1;
-	private boolean insideElevator;
+	private int endfloornumber=0;
+	private boolean insideElevator=false;
 	private String name;
 	private Random r; // Används för att kunna få ut slumpmässiga värden i likadana sekvenser mellan körningar.
 	
@@ -66,8 +66,8 @@ public class Person implements Runnable {
 
 
 	public void  setRandomNumbers() { 
-		this.setStartfloornumber(getRandomNumberInRange(1,3));
-		this.setEndfloornumber(getRandomNumberInRange(1,3));
+		this.setStartfloornumber(getRandomNumberInRange(1,7));
+		this.setEndfloornumber(getRandomNumberInRange(1,7));
 		
 		
 	}
@@ -86,11 +86,10 @@ public class Person implements Runnable {
 
 	@Override
 	public void run() {
-		  this.setRandomNumbers();
+		
+		this.setRandomNumbers();
 		       
 		
-		
-		 elev.updateUpdatePbList(this.startfloornumber);
 		
 		while (true) {
 			
@@ -100,20 +99,30 @@ public class Person implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+			// Väntar jag på att hissen ska komma upp till mitt våningsplan
+			  
+			if (!isInsideElevator()  && elev.getDoorOpen() == false) {
+				 elev.addToPbList(this.startfloornumber);
+			}
+			  
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
-			  if (this.getStartfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen()== true) {
-				  this.setInsideElevator(true);
-				  System.out.print("Hissdörr öppen start destination");
-			  }
-             // liv in i hisss 
+			if (this.getStartfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen()== true) {
+				this.setInsideElevator(true);
+				elev.removeFromPbList(this.startfloornumber);
+				System.out.print("Hissdörr öppen start destination "  + name + " kliver in" );
+			}
+			  
+			if (isInsideElevator()  && elev.getDoorOpen() == false) {
+				elev.addToPbList(this.endfloornumber);
+			}
 			
 			 // Har hissen kommit till min slutdestination och är dörrarna öppna ?
-              if (this.getEndfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen() == true) {
+            if (this.getEndfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen() == true) {
 				  
             	  this.setInsideElevator(false);
-            	  System.out.print("Hissdörr öppen end destination");
-			  }
+            	  elev.removeFromPbList(this.endfloornumber);
+            	  System.out.print("Hissdörr öppen end destination " + name + " kliver ut");
+			}
 			
 			 // liv ut ur hiss
 			
