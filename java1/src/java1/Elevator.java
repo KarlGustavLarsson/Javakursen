@@ -54,7 +54,7 @@ public synchronized  Boolean getDoorOpen() {
 		return door;
 	}
 
-public synchronized  void setDoorOpen(Boolean door) {
+public  void setDoorOpen(Boolean door) {
 		this.door = door;
 	}
 
@@ -75,7 +75,7 @@ public  void moveDown() {
 	}
  }
 
-public synchronized  void move() throws InterruptedException {
+public   void move() throws InterruptedException {
 	
 	Boolean up=false;
 
