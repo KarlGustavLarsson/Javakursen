@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class Elevator implements Runnable { 
 	private static int topfloor = 8;
+	private static int bottonfloor = 1;
 	private int floor;
 	private ArrayList<Integer>  floorlist = new ArrayList<>();
 	private Boolean door=false;
@@ -59,7 +60,7 @@ public synchronized  void setDoorOpen(Boolean door) {
 
 
 
-public synchronized void moveUp() {
+public  void moveUp() {
 	
     if (currentFloor < topfloor) {
     	currentFloor++;
@@ -67,14 +68,14 @@ public synchronized void moveUp() {
 	 
  }
  
-public synchronized void moveDown() {
+public  void moveDown() {
 	
-	if (currentFloor <= topfloor) {
+	if (currentFloor <= topfloor && currentFloor > bottonfloor) {
 	    currentFloor--;
 	}
  }
 
-public synchronized  void move(Set<Integer> pushButtonList ) throws InterruptedException {
+public synchronized  void move() throws InterruptedException {
 	
 	Boolean up=false;
 
@@ -91,7 +92,7 @@ public synchronized  void move(Set<Integer> pushButtonList ) throws InterruptedE
 	for (Integer myvalue : pushButtonList) {	
 			
 			if (currentFloor < myvalue.intValue()); {
-				System.out.print("up = false");
+				System.out.print("up = true");
 				up = true;
 			} 
 			
@@ -99,7 +100,7 @@ public synchronized  void move(Set<Integer> pushButtonList ) throws InterruptedE
 	for (Integer myvalue : pushButtonList) {	
 		
 		if (currentFloor >  myvalue.intValue()); {
-			System.out.print("up = true");
+			System.out.print("up = false");
 			up = false;
 		} 
 		
@@ -148,7 +149,7 @@ public void run() {
 		if (!pushButtonList.isEmpty()) {
 			
 			try {
-				move(pushButtonList);
+				move();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

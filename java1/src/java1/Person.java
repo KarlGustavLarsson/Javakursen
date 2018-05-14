@@ -107,6 +107,8 @@ public class Person implements Runnable {
 				 setStartfloornumber(this.startfloornumber);
 				 
 			}
+			
+			
 			  
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
 			if (this.getStartfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen()== true) {
