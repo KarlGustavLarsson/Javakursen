@@ -54,7 +54,7 @@ public synchronized  Boolean getDoorOpen() {
 		return door;
 	}
 
-public  void setDoorOpen(Boolean door) {
+public synchronized  void setDoorOpen(Boolean door) {
 		this.door = door;
 	}
 
@@ -68,7 +68,7 @@ public  void moveUp() {
 	 
  }
  
-public  void moveDown() {
+public   void moveDown() {
 	
 	if (currentFloor <= topfloor && currentFloor > bottonfloor) {
 	    currentFloor--;
@@ -78,22 +78,30 @@ public  void moveDown() {
 public   void move() throws InterruptedException {
 	
 	Boolean up=false;
-
+	
+	synchronized(pushButtonList) {
+		
+		
+		
+		
+	}
 	for (Integer myvalue : pushButtonList) {
 		
-		if (currentFloor == myvalue.intValue()); {
-			this.setDoorOpen(true);
-			System.out.print("Lika");
-			Thread.sleep(1000);      // Väntar på passagerare
-			this.setDoorOpen(false);
+		if (currentFloor == myvalue.intValue()) {
+			
+				this.setDoorOpen(true);
+				System.out.print("Lika");
+				Thread.sleep(1000);      // Väntar på passagerare
+				this.setDoorOpen(false);
 			// Do something
+			
 		}
 	}
 	for (Integer myvalue : pushButtonList) {	
 			
 			if (currentFloor < myvalue.intValue()); {
 				System.out.print("up = true");
-				up = true;
+				up = true;    // komma ihåg att jag for uppåt sist
 			} 
 			
 	}
@@ -101,10 +109,11 @@ public   void move() throws InterruptedException {
 		
 		if (currentFloor >  myvalue.intValue()); {
 			System.out.print("up = false");
-			up = false;
+			up = false;    // komma ihåg att jag for neråt sist
 		} 
 		
      }
+  
 		
 	if (up==true) {
 		moveUp();
