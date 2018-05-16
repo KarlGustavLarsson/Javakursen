@@ -66,8 +66,10 @@ public class Person implements Runnable {
 
 
 	public void  setRandomNumbers() { 
-		this.setStartfloornumber(getRandomNumberInRange(1,7));
-		this.setEndfloornumber(getRandomNumberInRange(1,7));
+	//	this.setStartfloornumber(getRandomNumberInRange(1,7));
+	//	this.setEndfloornumber(getRandomNumberInRange(1,7));
+	this.setStartfloornumber(1);
+	this.setEndfloornumber(7);
 		
 		
 	}
@@ -114,7 +116,6 @@ public class Person implements Runnable {
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
 			if (this.getStartfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen()== true) {
 				this.setInsideElevator(true);
-				elev.removeFromPbList(this.startfloornumber);
 				System.out.print("Hissdörr öppen start destination "  + name + " kliver in" );
 			}
 			  
@@ -127,7 +128,6 @@ public class Person implements Runnable {
             if (this.getEndfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen() == true) {
 				  
             	  this.setInsideElevator(false);
-            	  elev.removeFromPbList(this.endfloornumber);
             	  System.out.print("Hissdörr öppen end destination " + name + " kliver ut");
 			}
 			

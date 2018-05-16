@@ -81,40 +81,40 @@ public   void move() throws InterruptedException {
 	
 	synchronized(pushButtonList) {
 		
-		
-		
-		
-	}
-	for (Integer myvalue : pushButtonList) {
-		
-		if (currentFloor == myvalue.intValue()) {
+	
+		for (Integer myvalue : pushButtonList) {
 			
-				this.setDoorOpen(true);
-				System.out.print("Lika");
-				Thread.sleep(1000);      // Väntar på passagerare
-				this.setDoorOpen(false);
-			// Do something
-			
+			if (currentFloor == myvalue.intValue()) {
+				
+					this.setDoorOpen(true);
+					System.out.print("Lika");
+					Thread.sleep(1000);      // Väntar på passagerare
+					this.setDoorOpen(false);
+					removeFromPbList((currentFloor));
+				// Do something
+				
+			}
 		}
-	}
-	for (Integer myvalue : pushButtonList) {	
-			
-			if (currentFloor < myvalue.intValue()); {
-				System.out.print("up = true");
-				up = true;    // komma ihåg att jag for uppåt sist
-			} 
-			
-	}
-	for (Integer myvalue : pushButtonList) {	
-		
-		if (currentFloor >  myvalue.intValue()); {
-			System.out.print("up = false");
-			up = false;    // komma ihåg att jag for neråt sist
-		} 
-		
-     }
-  
-		
+		for (Integer myvalue : pushButtonList) {	
+				
+				if (currentFloor < myvalue.intValue()); {
+					System.out.print("up = true");
+					up = true;    // komma ihåg att jag for uppåt sist
+				} 
+				
+		}
+		if  (up == false)  {   
+			for (Integer myvalue : pushButtonList) {	
+				
+				if (currentFloor >  myvalue.intValue()); {
+					System.out.print("up = false");
+					up = false;    // komma ihåg att jag for neråt sist
+				} 
+				
+		     }
+		}
+	}	 // end synchronized pushButtonList
+	System.out.print("current floor " +  currentFloor);
 	if (up==true) {
 		moveUp();
 	} else { 
