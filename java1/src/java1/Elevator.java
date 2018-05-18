@@ -11,6 +11,7 @@ public class Elevator implements Runnable {
 	private int floor;
 	private ArrayList<Integer>  floorlist = new ArrayList<>();
 	private Boolean door=false;
+	private static boolean uplasattime = false;
 	public int currentFloor=1;
 	//private ArrayList<Person> plist;
 	//public  ArrayList<Integer> pushButtonList = new ArrayList<>();
@@ -77,7 +78,8 @@ public   void moveDown() {
 
 public   void move() throws InterruptedException {
 	
-	Boolean up=false;
+	Boolean upfirst=true;
+	
 	
 	synchronized(pushButtonList) {
 		
@@ -95,27 +97,32 @@ public   void move() throws InterruptedException {
 				
 			}
 		}
-		for (Integer myvalue : pushButtonList) {	
-				
-				if (currentFloor < myvalue.intValue()); {
-					System.out.print("up = true");
-					up = true;    // komma ihåg att jag for uppåt sist
-				} 
-				
-		}
-		if  (up == false)  {   
+		if (uplasattime == true || upfirst == true) {
 			for (Integer myvalue : pushButtonList) {	
+				uplasattime=false;
+				if (currentFloor < myvalue.intValue()); {
+					System.out.print("up = true"); // komma ihåg att jag for uppåt sist
+					upfirst = false;                     
+					uplasattime=true;
 				
+				} 		
+			}
+		}
+		if  (uplasattime == false)  {   
+			for (Integer myvalue : pushButtonList) {	
+				uplasattime = true;
 				if (currentFloor >  myvalue.intValue()); {
-					System.out.print("up = false");
-					up = false;    // komma ihåg att jag for neråt sist
+					System.out.print("up = false");    // komma ihåg att jag for neråt sist
+					                            
+					uplasattime=false;
+				
 				} 
 				
 		     }
 		}
 	}	 // end synchronized pushButtonList
 	System.out.print("current floor " +  currentFloor);
-	if (up==true) {
+	if (uplasattime == true) {
 		moveUp();
 	} else { 
 		moveDown();

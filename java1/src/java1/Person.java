@@ -68,8 +68,8 @@ public class Person implements Runnable {
 	public void  setRandomNumbers() { 
 	//	this.setStartfloornumber(getRandomNumberInRange(1,7));
 	//	this.setEndfloornumber(getRandomNumberInRange(1,7));
-	this.setStartfloornumber(1);
-	this.setEndfloornumber(7);
+	this.setStartfloornumber(7);
+	this.setEndfloornumber(1);
 		
 		
 	}
