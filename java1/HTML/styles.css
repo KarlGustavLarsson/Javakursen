@@ -1,0 +1,45 @@
+body {
+    background-color: DarkGray;
+}
+h1 {
+    text-align:center;
+    color: black;
+}
+footer p {
+    text-align:center;
+
+    color: black;
+}
+iframe  {
+
+     
+ 
+
+    
+}
+div.a  {
+    display: block;
+    width: 50%;
+	margin-left: auto;
+    margin-right: auto;
+    color: black;
+
+}
+
+
+ul.a{
+    //border:1px solid #ccc;
+    //border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+ul.a li{
+    display:inline;
+}
+ul.a a{
+    display:inline-block;
+    padding:10px;
+}
+
