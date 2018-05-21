@@ -10,13 +10,7 @@ footer p {
 
     color: black;
 }
-iframe  {
 
-     
- 
-
-    
-}
 body  {
     display: block;
     width: 50%;
@@ -27,13 +21,13 @@ body  {
 
 .header  {
     display: block;
-    width: 50%;
-	margin-left: auto;
-    margin-right: auto;
+  
+	margin-left: auto;;
+    margin-right: auto;;
     color: black;
 }
 
-ul.a{
+.video{
     //border:1px solid #ccc;
     //border-width:1px 0;
     list-style:none;
@@ -41,10 +35,10 @@ ul.a{
     padding:0;
     text-align:center;
 }
-ul.a li{
+.video li{
     display:inline;
 }
-ul.a a{
+.video a{
     display:inline-block;
     padding:10px;
 }
