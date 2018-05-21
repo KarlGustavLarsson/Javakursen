@@ -121,7 +121,7 @@ public class Person implements Runnable {
 			  
 			if (isInsideElevator()  && elev.getDoorOpen() == false) {
 				elev.addToPbList(this.endfloornumber);
-				setEndfloornumber(this.endfloornumber);
+				
 			}
 			
 			 // Har hissen kommit till min slutdestination och är dörrarna öppna ?

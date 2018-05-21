@@ -11,7 +11,7 @@ public class Elevator implements Runnable {
 	private int floor;
 	private ArrayList<Integer>  floorlist = new ArrayList<>();
 	private Boolean door=false;
-	private static boolean uplasattime = false;
+	private static boolean goingup = true;
 	public int currentFloor=1;
 	//private ArrayList<Person> plist;
 	//public  ArrayList<Integer> pushButtonList = new ArrayList<>();
@@ -30,6 +30,7 @@ public class Elevator implements Runnable {
 }
 
 public synchronized void addToPbList(int value) {
+	   System.out.println("Adde tolist " + value);
 		this.pushButtonList.add(value);
 	}
 
@@ -71,14 +72,16 @@ public  void moveUp() {
  
 public   void moveDown() {
 	
-	if (currentFloor <= topfloor && currentFloor > bottonfloor) {
-	    currentFloor--;
+	if (currentFloor > bottonfloor) {
+		 
+		 currentFloor--;
+		
 	}
  }
 
 public   void move() throws InterruptedException {
 	
-	Boolean upfirst=true;
+	
 	
 	
 	synchronized(pushButtonList) {
@@ -90,31 +93,32 @@ public   void move() throws InterruptedException {
 				
 					this.setDoorOpen(true);
 					System.out.print("Lika");
-					Thread.sleep(1000);      // Väntar på passagerare
+					System.out.print("Hissten stannar på våning " + currentFloor );
+					
+					Thread.sleep(5000);      // Väntar på passagerare
 					this.setDoorOpen(false);
 					removeFromPbList((currentFloor));
+					break;
 				// Do something
 				
 			}
 		}
-		if (uplasattime == true || upfirst == true) {
+		if ( goingup  == true) {
 			for (Integer myvalue : pushButtonList) {	
-				uplasattime=false;
-				if (currentFloor < myvalue.intValue()); {
-					System.out.print("up = true"); // komma ihåg att jag for uppåt sist
-					upfirst = false;                     
-					uplasattime=true;
+				 goingup =false;
+				if (currentFloor < myvalue.intValue()) {
+					System.out.print("up = true");    // komma ihåg att jag for uppåt sist                     
+					 goingup = true;
 				
 				} 		
 			}
 		}
-		if  (uplasattime == false)  {   
+		if  (goingup  == false)  {   
 			for (Integer myvalue : pushButtonList) {	
-				uplasattime = true;
-				if (currentFloor >  myvalue.intValue()); {
-					System.out.print("up = false");    // komma ihåg att jag for neråt sist
-					                            
-					uplasattime=false;
+				 goingup  = true;
+				if (currentFloor >  myvalue.intValue()) {
+					System.out.print("up = false");    // komma ihåg att jag for neråt sist                    
+					 goingup = false;
 				
 				} 
 				
@@ -122,7 +126,7 @@ public   void move() throws InterruptedException {
 		}
 	}	 // end synchronized pushButtonList
 	System.out.print("current floor " +  currentFloor);
-	if (uplasattime == true) {
+	if (goingup == true) {
 		moveUp();
 	} else { 
 		moveDown();
