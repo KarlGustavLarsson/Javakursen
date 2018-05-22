@@ -13,6 +13,13 @@ li {
     display: inline;
 }
 
+.scrollpage {
+height: 100vh;
+
+
+}
+
+
 
 .footer {
     position: fixed;
@@ -25,35 +32,58 @@ li {
 }
 
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    float: left;
-    border-right:1px solid #bbb;
-}
-
-li:last-child {
-    border-right: none;
-}
-
-li a {
+.kaffe{
     display: block;
-    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+	font-size: 50px;
+	font-weight: bold;
+    transform: translate(-50%, -50%);
+}
+
+
+.products {
+display: flex;
+flex-direction: row;
+
+}
+.product-container {
+  display: flex;
+  flex-direction: row;
+  background-color:  #B5947D;
+  width: 50%;
+}
+
+.product-container > div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 20px;
+}
+
+
+
+.button {
+    background-color: #D3D3D3;
+    border: none;
+    color: black;
+    padding: 15px 32px;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
-li a:hover:not(.active) {
-    background-color: #111;
-}
 
-.active {
-    background-color: #4CAF50;
-}
+
