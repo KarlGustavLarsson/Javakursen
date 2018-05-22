@@ -65,11 +65,18 @@ public class Person implements Runnable {
 	}
 
 
-	public void  setRandomNumbers() { 
-	//	this.setStartfloornumber(getRandomNumberInRange(1,7));
-	//	this.setEndfloornumber(getRandomNumberInRange(1,7));
-	this.setStartfloornumber(7);
-	this.setEndfloornumber(1);
+	public void  setRandomNumberStartfloor() { 
+		this.setStartfloornumber(getRandomNumberInRange(1,7));
+	//this.setStartfloornumber(7);
+	//this.setEndfloornumber(1);
+		
+		
+	}
+	
+	public void  setRandomNumberEndfloor() { 
+		this.setEndfloornumber(getRandomNumberInRange(1,7));
+	//this.setStartfloornumber(7);
+	//this.setEndfloornumber(1);
 		
 		
 	}
@@ -89,7 +96,7 @@ public class Person implements Runnable {
 	@Override
 	public void run() {
 		
-		this.setRandomNumbers();
+	//	this.setRandomNumbers();
 		       
 		
 		
@@ -104,24 +111,27 @@ public class Person implements Runnable {
 			// Väntar jag på att hissen ska komma upp till mitt våningsplan
 			
 			  
-			if (!isInsideElevator()  && elev.getDoorOpen() == false) {
+		//	if (!isInsideElevator()  && elev.getDoorOpen() == false) {
+ 		   if (!isInsideElevator()  && this.startfloornumber == 0) {
 				System.out.println("Väntar utanför hiss");
+				 setRandomNumberStartfloor();
 				 elev.addToPbList(this.startfloornumber);
 				 setStartfloornumber(this.startfloornumber);
 				 
 			}
 			
-			System.out.print("Door " + elev.getDoorOpen() + this.getStartfloornumber() + elev.getCurrentFloor());
+			//System.out.print("Door " + elev.getDoorOpen() + this.getStartfloornumber() + elev.getCurrentFloor());
 			  
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
 			if (this.getStartfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen()== true) {
 				this.setInsideElevator(true);
+				setRandomNumberEndfloor();
+				elev.addToPbList(this.endfloornumber);
 				System.out.print("Hissdörr öppen start destination "  + name + " kliver in" );
 			}
 			  
 			if (isInsideElevator()  && elev.getDoorOpen() == false) {
-				elev.addToPbList(this.endfloornumber);
-				
+				System.out.println("Väntar inne i  hiss");
 			}
 			
 			 // Har hissen kommit till min slutdestination och är dörrarna öppna ?

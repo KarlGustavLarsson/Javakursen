@@ -30,7 +30,6 @@ public class Elevator implements Runnable {
 }
 
 public synchronized void addToPbList(int value) {
-	   System.out.println("Adde tolist " + value);
 		this.pushButtonList.add(value);
 	}
 
@@ -92,7 +91,6 @@ public   void move() throws InterruptedException {
 			if (currentFloor == myvalue.intValue()) {
 				
 					this.setDoorOpen(true);
-					System.out.print("Lika");
 					System.out.print("Hissten stannar på våning " + currentFloor );
 					
 					Thread.sleep(5000);      // Väntar på passagerare
