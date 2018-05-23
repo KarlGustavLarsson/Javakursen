@@ -18,6 +18,21 @@ height: 100vh;
 
 
 }
+.background {
+
+ background-image: url("kaffebild.jpg");
+ 
+
+}
+
+.centershop  {
+    text-align: center;
+   
+}
+.centerform  {
+    text-align: center;
+   
+}
 
 
 
@@ -36,7 +51,7 @@ height: 100vh;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: 100%; 
 }
 
 
