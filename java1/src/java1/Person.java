@@ -8,6 +8,8 @@ public class Person implements Runnable {
 	private int startfloornumber=0;
 	private int endfloornumber=0;
 	private boolean insideElevator=false;
+	private boolean selectedStart=false;
+	private boolean selectedEnd=false;
 	private String name;
 	private Random r; // Används för att kunna få ut slumpmässiga värden i likadana sekvenser mellan körningar.
 	
@@ -111,23 +113,27 @@ public class Person implements Runnable {
 			// Väntar jag på att hissen ska komma upp till mitt våningsplan
 			
 			  
-		//	if (!isInsideElevator()  && elev.getDoorOpen() == false) {
- 		   if (!isInsideElevator()  && this.startfloornumber == 0) {
-				System.out.println("Väntar utanför hiss");
-				 setRandomNumberStartfloor();
-				 elev.addToPbList(this.startfloornumber);
-				 setStartfloornumber(this.startfloornumber);
-				 
-			}
-			
+		   if (selectedStart==false) {  
+	 		   if (!isInsideElevator()  && elev.getDoorOpen() == false) {
+					System.out.println("Väntar utanför hiss");
+					 setRandomNumberStartfloor();
+					 elev.addToPbList(this.startfloornumber);
+					 setStartfloornumber(this.startfloornumber);
+					 selectedStart=true;
+					 
+				}
+		   }
 			//System.out.print("Door " + elev.getDoorOpen() + this.getStartfloornumber() + elev.getCurrentFloor());
 			  
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
 			if (this.getStartfloornumber() == elev.getCurrentFloor() && elev.getDoorOpen()== true) {
-				this.setInsideElevator(true);
-				setRandomNumberEndfloor();
-				elev.addToPbList(this.endfloornumber);
-				System.out.print("Hissdörr öppen start destination "  + name + " kliver in" );
+				if (!selectedEnd) {
+					this.setInsideElevator(true);
+					setRandomNumberEndfloor();
+					elev.addToPbList(this.endfloornumber);
+					selectedEnd=true;
+					System.out.print("Hissdörr öppen start destination "  + name + " kliver in" );
+				}
 			}
 			  
 			if (isInsideElevator()  && elev.getDoorOpen() == false) {

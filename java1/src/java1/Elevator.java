@@ -13,11 +13,8 @@ public class Elevator implements Runnable {
 	private Boolean door=false;
 	private static boolean goingup = true;
 	public int currentFloor=1;
-	//private ArrayList<Person> plist;
-	//public  ArrayList<Integer> pushButtonList = new ArrayList<>();
 	public Set<Integer> pushButtonList = new HashSet<>();
 	
-	//public  ArrayList<Integer> pushButtonList = new ArrayList<>();
 	
 	
 	
@@ -80,9 +77,6 @@ public   void moveDown() {
 
 public   void move() throws InterruptedException {
 	
-	
-	
-	
 	synchronized(pushButtonList) {
 		
 	
@@ -105,7 +99,7 @@ public   void move() throws InterruptedException {
 			for (Integer myvalue : pushButtonList) {	
 				 goingup =false;
 				if (currentFloor < myvalue.intValue()) {
-					System.out.print("up = true");    // komma ihåg att jag for uppåt sist                     
+					//System.out.print("up = true");    // komma ihåg att jag for uppåt sist                     
 					 goingup = true;
 				
 				} 		
@@ -115,7 +109,7 @@ public   void move() throws InterruptedException {
 			for (Integer myvalue : pushButtonList) {	
 				 goingup  = true;
 				if (currentFloor >  myvalue.intValue()) {
-					System.out.print("up = false");    // komma ihåg att jag for neråt sist                    
+					//System.out.print("up = false");    // komma ihåg att jag for neråt sist                    
 					 goingup = false;
 				
 				} 
@@ -123,7 +117,7 @@ public   void move() throws InterruptedException {
 		     }
 		}
 	}	 // end synchronized pushButtonList
-	System.out.print("current floor " +  currentFloor);
+	//System.out.print("current floor " +  currentFloor);
 	if (goingup == true) {
 		moveUp();
 	} else { 
@@ -174,34 +168,9 @@ public void run() {
 			}
 			
 		}
-		// Knapp tryckt på en våning?.
-		// Knapp i hiss är tryckt på våning.
+
+		System.out.println(floorlist);
 		
-	// Vart ska jag stanna?
-		// Aktivitet ska ske på våning ( Vid träff )
-		
-	// När jag stannat:
-		// Öppna dörrarna om jag ska stanna och dörrarna är stängda
-		// Informera alla personer vilken våning jag är på
-		
-		// Stäng dörrarna om jag ska åka och dörrarna är öppna
-	// Fortsätt åka?
-	
-	
-	
-	/* GAMLA KODEN */
-	//		for (Person myperson : plist) {
-				
-	//			  floor = myperson.getStartfloornumber();
-	//			  floorlist.add(floor);
-	//		} // for
-	//		Collections.sort(floorlist);
-			
-	//			  move(floor);
-	/* GAMLA KODEN */		
-			System.out.println(floorlist);
-			
-		//	this.WaitForNextAction();	
 	} // while
 	
 } // run

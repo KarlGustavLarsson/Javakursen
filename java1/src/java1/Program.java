@@ -14,6 +14,7 @@ public class Program {
 	
 		Person person1 =  new Person( "Olle Olsson" , elevator);
 		Person person2 =  new Person( "Kurt Svensson", elevator);
+		Person person3 =  new Person( "Pelle Persson", elevator);
 		
 		
 		
@@ -32,6 +33,9 @@ public class Program {
        
        Thread personthread2  = new Thread(person2);
        personthread2.start();
+       
+       Thread personthread3  = new Thread(person3);
+       personthread3.start();
        
 		
 	}
