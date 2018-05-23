@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uppgift 10</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div  class="center">  
+<h1>FizzBuzz generator</h1>
+<p>Fyll i fizzbuzz information</p>
+
+<form id="nameform">
+  starttal:<br>
+  <input id="start" type="number" name="startnumber"><br>
+  slutal<br>
+  <input id="slut" type="number" name="endnumber"><br>
+  Fizz<br>
+  <input  id="fizz" type="number" name="fizz"><br>
+  Buzz<br>
+  <input id="buzz" type="number" name="buzz"><br><br>
+ 
+</form>
+
+
+<button onclick="myFunction('start', 'slut', 'fizz','buzz')" type="submit" form="nameform" value="submit">Submit 
+</button>
+
+
+
+<script>
+function myFunction(a,b,c,d) {
+   elemA  = document.getElementById(a).value;
+   elemB  = document.getElementById(b).value;
+   elemC  = document.getElementById(c).value;
+   elemD  = document.getElementById(d).value;
+   
+   for (i = 0; i < 100 i++) {
+    
+   }
+   
+   document.write(elemA + elemB + elemC);
+}
+</script>
+
+
+</div>
+</body>
+</html>
