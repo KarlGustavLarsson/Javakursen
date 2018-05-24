@@ -113,16 +113,19 @@ public class Person implements Runnable {
 			// Väntar jag på att hissen ska komma upp till mitt våningsplan
 			
 			  
-		   if (selectedStart==false) {  
+		   if (!selectedStart) {  
 	 		   if (!isInsideElevator()  && elev.getDoorOpen() == false) {
-					System.out.println("Väntar utanför hiss");
+					System.out.println(name + " väntar utanför hiss");
 					 setRandomNumberStartfloor();
 					 elev.addToPbList(this.startfloornumber);
-					 setStartfloornumber(this.startfloornumber);
 					 selectedStart=true;
 					 
 				}
 		   }
+		   
+		   if (!isInsideElevator()  && elev.getDoorOpen() == false) {
+				System.out.println(name + " väntar utanför hiss");
+			}
 			//System.out.print("Door " + elev.getDoorOpen() + this.getStartfloornumber() + elev.getCurrentFloor());
 			  
 			 // Har hissen kommit kommit till mitt våningsplan och dörrarna är öppna 
@@ -137,7 +140,7 @@ public class Person implements Runnable {
 			}
 			  
 			if (isInsideElevator()  && elev.getDoorOpen() == false) {
-				System.out.println("Väntar inne i  hiss");
+				System.out.println(name + " väntar inne i  hiss");
 			}
 			
 			 // Har hissen kommit till min slutdestination och är dörrarna öppna ?
@@ -145,6 +148,15 @@ public class Person implements Runnable {
 				  
             	  this.setInsideElevator(false);
             	  System.out.print("Hissdörr öppen end destination " + name + " kliver ut");
+            	  try {
+					Thread.sleep(2000);
+				  } catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				  }
+            	  setRandomNumberStartfloor();
+				  elev.addToPbList(this.startfloornumber);
+				  selectedEnd=false;
 			}
 			
 			 // liv ut ur hiss
