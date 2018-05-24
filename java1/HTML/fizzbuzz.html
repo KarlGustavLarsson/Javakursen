@@ -3,46 +3,69 @@
 <head>
 <title>Uppgift 10</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script>
+function myFunction(a,b,c,d) {
+   var start  = document.getElementById(a).value;
+   var end    = document.getElementById(b).value;
+   var fizz   = document.getElementById(c).value;
+   var buzz   = document.getElementById(d).value;
+   var text = "";
+  
+   for (var i = start; i < end; i++) {
+	  if  (i %  fizz === 0  && i %  buzz === 0)  
+	  { 
+			 console.log("FIZZBUZZ");
+			 text += "FIZZBUZZ" + "<br>";
+	  }
+	  else if (i %  fizz === 0)
+	  {
+	          console.log("FIZZ");
+			  text += "FIZZ" + "<br>";
+			  
+	  }
+	  else if (i %  buzz === 0)  
+	  {
+	         console.log("BUZZ");
+			 text += "BUZZ" + "<br>";
+	      
+	  }
+	  else {
+			
+			console.log(i);
+			text += i.toString() + "<br>";
+			
+	  }
+	  
+   }
+   document.getElementById("demo").innerHTML = text;
+}
+</script>
 </head>
 <body>
 <div  class="center">  
 <h1>FizzBuzz generator</h1>
+</div>
 <p>Fyll i fizzbuzz information</p>
 
 <form id="nameform">
   starttal:<br>
-  <input id="start" type="number" name="startnumber"><br>
+  <input id="start" type="number" name="startnumber" value="1" ><br>
   slutal<br>
-  <input id="slut" type="number" name="endnumber"><br>
+  <input id="slut" type="number" name="endnumber" value="10"><br>
   Fizz<br>
-  <input  id="fizz" type="number" name="fizz"><br>
+  <input  id="fizz" type="number" name="fizz" value="5"><br>
   Buzz<br>
-  <input id="buzz" type="number" name="buzz"><br><br>
+  <input id="buzz" type="number" name="buzz" value="8"><br><br>
  
 </form>
 
 
-<button onclick="myFunction('start', 'slut', 'fizz','buzz')" type="submit" form="nameform" value="submit">Submit 
+<button onclick="myFunction('start', 'slut', 'fizz','buzz')">Submit 
 </button>
 
+<p id="demo"></p>
 
 
-<script>
-function myFunction(a,b,c,d) {
-   elemA  = document.getElementById(a).value;
-   elemB  = document.getElementById(b).value;
-   elemC  = document.getElementById(c).value;
-   elemD  = document.getElementById(d).value;
-   
-   for (i = 0; i < 100 i++) {
-    
-   }
-   
-   document.write(elemA + elemB + elemC);
-}
-</script>
 
-
-</div>
 </body>
 </html>
