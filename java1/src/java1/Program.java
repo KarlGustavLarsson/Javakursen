@@ -7,4 +7,9 @@ public class Program {
 
 	}
 
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
