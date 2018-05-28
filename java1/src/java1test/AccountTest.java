@@ -3,10 +3,7 @@ package java1test;
 //import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 import java1.Account;
@@ -69,6 +66,37 @@ public class AccountTest {
 		Assert.assertTrue(false == testaccount.getAccontLock());
 	
 	}
+	
+	@Test
+	public void lockAlreadyLockedAccont() {
+		Account testaccount = new Account();
+		testaccount.lockAccont(true);
+		testaccount.alreeadyLockedAccont();
+		
+		Assert.assertTrue(true == testaccount.alreeadyLockedAccont());
+	
+	}
+	@Test
+	public void getAccountNoTen() {
+		Account testaccount = new Account();
+		testaccount.setAccountNo(10);
+		Assert.assertTrue(10 == testaccount.getAccountNo());
+		
+	}
+	
+	@Test
+	public void testAccountHistory() {
+		Account testaccount = new Account();
+		testaccount.setAccountNo(1000);
+		testaccount.setBalance(1500);
+		testaccount.removeMoneyFromAccount(100);
+		testaccount.addToHistory("Uttag: "  +  "100  kr"   );
+		testaccount.removeMoneyFromAccount(200);
+		testaccount.addToHistory("Uttag: "  +  "200  kr"   );
+		Assert.assertTrue(10 == testaccount.history.indexOf(0));
+		
+	}
+	
 	
 	
 	
