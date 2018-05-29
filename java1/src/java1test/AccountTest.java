@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import java1.Account;
+import java1.Bank;
 
 
 
@@ -22,11 +23,13 @@ public class AccountTest {
 	
 	@Test
 	public void addOnehundredToaccount() {
-		Account testaccount = new Account();
-		testaccount.setBalance(0.00);
-		testaccount.addMoneyToAccount(100);
+		Bank testbank = new Bank();
+		testbank.addAccount("Kalle Olsson 1");
+		Account  myaccount1 = testbank.findAccount(1000);
+		myaccount1.setBalance(0.00);
+		myaccount1.addMoneyToAccount(100, myaccount1);
 		
-		Assert.assertTrue(100 == testaccount.getBalance());
+		Assert.assertTrue(100 == myaccount1.getBalance());
 		
 	}
 	
@@ -42,11 +45,14 @@ public class AccountTest {
 	
 	@Test
 	public void removeOnehundredFromAccount() {
-		Account testaccount = new Account();
-		testaccount.setBalance(100.00);
-		testaccount.removeMoneyFromAccount(100.00);
+		Bank testbank = new Bank();
+		testbank.addAccount("Kalle Olsson 1");
+		Account  myaccount1 = testbank.findAccount(1000);
+	
+		myaccount1.setBalance(100.00);
+		myaccount1.removeMoneyFromAccount(100.00, myaccount1);
 		
-		Assert.assertTrue(0 == testaccount.getBalance());
+		Assert.assertTrue(0 == myaccount1.getBalance());
 	
 	}
 	
@@ -86,14 +92,18 @@ public class AccountTest {
 	
 	@Test
 	public void testAccountHistory() {
-		Account testaccount = new Account();
-		testaccount.setAccountNo(1000);
-		testaccount.setBalance(1500);
-		testaccount.removeMoneyFromAccount(100);
-		testaccount.addToHistory("Uttag: "  +  "100  kr"   );
-		testaccount.removeMoneyFromAccount(200);
-		testaccount.addToHistory("Uttag: "  +  "200  kr"   );
-		Assert.assertTrue(10 == testaccount.history.indexOf(0));
+		Bank testbank = new Bank();
+		testbank.addAccount("Kalle Olsson 1");
+		Account  myaccount1 = testbank.findAccount(1000);
+		myaccount1.setBalance(1000); 
+		myaccount1.removeMoneyFromAccount(100, myaccount1);
+		myaccount1.removeMoneyFromAccount(100, myaccount1);
+		myaccount1.addMoneyToAccount(500, myaccount1);
+		myaccount1.printTransHistory(myaccount1.history);
+		Assert.assertTrue(1300 == myaccount1.getBalance());
+		Assert.assertEquals("Uttag: 100.0 kr från konto 1000", myaccount1.history.get(0));
+		Assert.assertEquals("Uttag: 100.0 kr från konto 1000", myaccount1.history.get(1));
+		Assert.assertEquals("Insättning: 500.0 kr till konto 1000", myaccount1.history.get(2));
 		
 	}
 	

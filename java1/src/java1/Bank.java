@@ -46,8 +46,8 @@ public class Bank {
 
 	public void moveMoneyBetweenAccounts(Account fromacccount, Account toaccount, double amount) {
 		    if (fromacccount.getBalance() >= amount) {  
-		    	fromacccount.removeMoneyFromAccount(amount);
-		    	toaccount.addMoneyToAccount(amount);
+		    	fromacccount.removeMoneyFromAccount(amount,fromacccount);
+		    	toaccount.addMoneyToAccount(amount, toaccount);
 		    } else { 
 		        System.out.println("Otillräckligt med pengar på kontot " + fromacccount.getAccountNo()) ;	
 		    	

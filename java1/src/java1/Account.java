@@ -8,6 +8,8 @@ public class Account {
 	boolean lock;
 	public int accountNo;
 	public String customerName;
+	String remove="Uttag: ";
+	String add   ="Insättning: ";
 	public ArrayList<String> history = new ArrayList<String>(); 
 
 	
@@ -39,16 +41,18 @@ public class Account {
 		this.balance = balance;
 	}
 
-	public void removeMoneyFromAccount(double removemoney) {
+	public void removeMoneyFromAccount(double removemoney, Account account) {
 		
+		account.balance -= removemoney;
 		
-		this.balance -= removemoney;
-		
+		addToHistory(remove + removemoney + " kr från konto "  + account.getAccountNo());
 	}
 
-	public void addMoneyToAccount(double addmoney) {
+	public void addMoneyToAccount(double addmoney, Account account) {
 		
 		this.balance += addmoney;
+		
+		addToHistory(add + addmoney + " kr till konto "  + account.getAccountNo());
 		
 	}
 
@@ -71,6 +75,12 @@ public class Account {
 		}
 		 
 		
+	}
+	public void printTransHistory(ArrayList<String> history) {
+		
+		for (String mystring : history) { 
+			System.out.println(mystring);
+		}
 	}
 
 

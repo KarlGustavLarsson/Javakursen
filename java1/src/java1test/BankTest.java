@@ -76,11 +76,11 @@ public class BankTest {
 	@Test
 	public void testshowSaldoOnAllAccounts() {
 		Bank testbank = new Bank();
-		testbank.addAccount("Kalle Olsson");
-		testbank.addAccount("Kalle Olsson");
-		testbank.addAccount("Pelle Persson");
-		testbank.addAccount("Nisse Nilsson");
-		testbank.addAccount("Hasse Hansson");
+		testbank.addAccount("Kalle Olsson 1");
+		testbank.addAccount("Kalle Olsson 2");
+		testbank.addAccount("Kalle Olsson 3");
+		testbank.addAccount("Kalle Olsson 4");
+		testbank.addAccount("Kalle Olsson 5");
 		Account myaccount1 = new Account();
 		myaccount1 = testbank.findAccount(1000);
 		myaccount1.setBalance(1000);
