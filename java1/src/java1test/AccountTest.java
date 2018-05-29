@@ -9,11 +9,18 @@ import org.junit.jupiter.api.Test;
 import java1.Account;
 import java1.Bank;
 
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class AccountTest {
 	
-
+	private int threadCount = 200;
+    private int amount = 1;
+	    
 	@Test
 	public void getMoneyFromEmptyAccont() {
 		Account testaccount = new Account();
@@ -108,7 +115,42 @@ public class AccountTest {
 	}
 	
 	
-	
+	  @Test
+	  public void testUpdateBalance() throws Exception {
+			Bank testbank = new Bank();
+		    testbank.addAccount("Kalle Olsson 1");
+			Account  myaccount1 = testbank.findAccount(1000);
+			myaccount1.setBalance(1000); 
+	       
+	        ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
+	        List<Future<Void>> futures = new ArrayList<Future<Void>>();
+	        for (int x = 0; x < threadCount; x++) {
+	            Callable<Void> callable = new Callable<Void>() {
+	                @Override
+	                public Void call() throws Exception {
+	                	 myaccount1.addMoneyToAccount(amount, myaccount1);;
+	                    return null;
+	                }
+	            };
+	            Future<Void> submit = executorService.submit(callable);
+	            futures.add(submit);
+	        }
+	 
+	        List<Exception> exceptions = new ArrayList<Exception>();
+	        for (Future<Void> future : futures) {
+	            try {
+	                future.get();
+	            } catch (Exception e) {
+	                exceptions.add(e);
+	                e.printStackTrace(System.err);
+	            }
+	        }
+	 
+	        executorService.shutdown();
+	 
+	        Assert.assertTrue(1200 == myaccount1.getBalance());
+	       
+	    }
 	
 
 }
