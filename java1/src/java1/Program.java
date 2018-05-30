@@ -60,18 +60,21 @@ public class Program {
 	    		    	mybank.addAccount("Kalle Karlsson"); 
 	    		    	break;
 	    		    case "2":
+	    		    	mybank.showAllAcconts(mybank.bankaccounts);
 	    		    	break;
 	    		    case "3":
-	    	
+	    		    	mybank.showAllAccontSaldo(mybank.bankaccounts);
 	    		    	break;
 	    		    case "4": 
-	    		   
+	    		    	Account myaccount = mybank.findAccount(1000);
+	    		    	mybank.showAccountSaldo(myaccount);
 	    		    	break;
 	    		    case "5": 
 	    	
 	    		    	break;
 	    		    case "6": 
-	    		
+	    		    	Account  myaccount1 = mybank.findAccount(1000);
+	    		    	myaccount1.addMoneyToAccount(550, myaccount1);
 	    		    	break;	
 	    		    case "7": 	
 	    		    	

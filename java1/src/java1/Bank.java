@@ -63,6 +63,15 @@ public class Bank {
 			
 		}
 	}
+	
+    public void showAllAcconts(ArrayList<Account> bankaccounts) {
+		
+		for (Account myaccount : bankaccounts) { 
+			
+			 System.out.println("Kontonr: " + myaccount.getAccountNo());	
+			
+		}
+	}
 		 
 		 
 }
