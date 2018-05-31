@@ -6,10 +6,11 @@ import java.io.InputStreamReader;
 
 public class Program {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException, IOException {
 		// TODO Auto-generated method stub
 		
-		int value=0; 
+		int account=0; 
+		double value=0; 
 		Bank mybank = new Bank();
 		
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
@@ -68,13 +69,13 @@ public class Program {
 	    		    case "4": 
 	    		    	System.out.println("Vilket konto vill du välja: ");
 						try {
-							value = Integer.parseInt(input.readLine());
+							account = Integer.parseInt(input.readLine());
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 		    	    	
-	    		    	myaccount = mybank.findAccount(value);
+	    		    	myaccount = mybank.findAccount(account);
 	    		    	mybank.showAccountSaldo(myaccount);
 	    		    	break;
 	    		    case "5": 
@@ -82,8 +83,12 @@ public class Program {
 	    		    	myaccount.printTransHistory(myaccount.history);
 	    		    	break;
 	    		    case "6": 
-	    		    	myaccount = mybank.findAccount(1000);
-	    		    	myaccount.addMoneyToAccount(550, myaccount);
+	    		    	System.out.println("Vilket konto vill du sätta in pengar till: ");
+	    		    	account = Integer.parseInt(input.readLine());
+	    		    	System.out.println("Hur mycket pengar vill du sätta in ?: ");
+	    		    	value = Double.parseDouble(input.readLine());
+	    		    	myaccount = mybank.findAccount(account);
+	    		    	myaccount.addMoneyToAccount(value, myaccount);
 	    		    	break;	
 	    		    case "7": 
 	    		    	myaccount = mybank.findAccount(1000);
