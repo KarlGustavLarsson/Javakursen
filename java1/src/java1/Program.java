@@ -9,7 +9,7 @@ public class Program {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		
+		int value=0; 
 		Bank mybank = new Bank();
 		
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
@@ -66,7 +66,15 @@ public class Program {
 	    		    	mybank.showAllAccontSaldo(mybank.bankaccounts);
 	    		    	break;
 	    		    case "4": 
-	    		    	myaccount = mybank.findAccount(1000);
+	    		    	System.out.println("Vilket konto vill du välja: ");
+						try {
+							value = Integer.parseInt(input.readLine());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		    	    	
+	    		    	myaccount = mybank.findAccount(value);
 	    		    	mybank.showAccountSaldo(myaccount);
 	    		    	break;
 	    		    case "5": 
