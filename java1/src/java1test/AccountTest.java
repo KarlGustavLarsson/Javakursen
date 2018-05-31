@@ -65,25 +65,32 @@ public class AccountTest {
 	
 	@Test
 	public void accountIslocked() {
-		Account testaccount = new Account();
-		testaccount.lockAccont(true);
 		
-		Assert.assertTrue(true == testaccount.getAccontLock());
+		Bank testbank = new Bank();
+		testbank.addAccount("Kalle Olsson 1");
+		Account  myaccount1 = testbank.findAccount(1000);
+		myaccount1.lockAccont(true, myaccount1);
+		
+		Assert.assertTrue(true == myaccount1.getAccontLock());
 		
 	}
 	@Test
 	public void accountIsUnlocked() {
-		Account testaccount = new Account();
-		testaccount.lockAccont(false);
+		Bank testbank = new Bank();
+		testbank.addAccount("Kalle Olsson 1");
+		Account  myaccount1 = testbank.findAccount(1000);
+		myaccount1.lockAccont(false, myaccount1);
 		
-		Assert.assertTrue(false == testaccount.getAccontLock());
+		Assert.assertTrue(false == myaccount1.getAccontLock());
 	
 	}
 	
 	@Test
 	public void lockAlreadyLockedAccont() {
+		Bank testbank = new Bank();
 		Account testaccount = new Account();
-		testaccount.lockAccont(true);
+		Account  myaccount1 = testbank.findAccount(1000);
+		testaccount.lockAccont(true,  myaccount1 );
 		testaccount.alreeadyLockedAccont();
 		
 		Assert.assertTrue(true == testaccount.alreeadyLockedAccont());

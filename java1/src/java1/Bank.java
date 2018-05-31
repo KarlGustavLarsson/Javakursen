@@ -19,7 +19,7 @@ public class Bank {
 	    accountno = accountno + 1;
 		Account account = new Account();
 		account.setCustomerName(name);
-		account.lockAccont(false);
+		account.setLock(false);
 		account.setBalance(0);
 		account.setAccountNo(accountno);
 		

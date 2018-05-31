@@ -85,7 +85,8 @@ public class Program {
 	    		    	
 	    		    	break;	
 	    		    case "9": 	
-	    		    	
+	    		    	myaccount = mybank.findAccount(1000);
+	    		    	myaccount.lockAccont(true, myaccount);
 	    		    	break;		
 	    		 
 	    		    default:

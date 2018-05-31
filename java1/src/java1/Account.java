@@ -56,11 +56,16 @@ public class Account {
 		
 	}
 
-	public void lockAccont(boolean lock) {
+	public void lockAccont(boolean lock, Account account) {
 		this.lock = lock;
 		
 	}
+	
+	
 
+	public void setLock(boolean lock) {
+		this.lock = lock;
+	}
 	public boolean getAccontLock() {
 		
 		return this.lock;
