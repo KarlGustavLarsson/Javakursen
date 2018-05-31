@@ -111,7 +111,9 @@ public class Program {
 	    		    	mybank.moveMoneyBetweenAccounts(myaccount1,myaccount2 ,100 );
 	    		    	break;	
 	    		    case "9": 	
-	    		    	myaccount = mybank.findAccount(1000);
+	    		    	System.out.println("Vilket konto vill du spårra för uttag ?: ");
+	    		    	account = Integer.parseInt(input.readLine());
+	    		    	myaccount = mybank.findAccount(account);
 	    		    	myaccount.lockAccont(true, myaccount);
 	    		    	break;		
 	    		 
