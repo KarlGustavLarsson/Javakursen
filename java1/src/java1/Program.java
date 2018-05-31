@@ -10,6 +10,7 @@ public class Program {
 		// TODO Auto-generated method stub
 		
 		int account=0; 
+		int account2=0; 
 		double value=0; 
 		Bank mybank = new Bank();
 		
@@ -91,14 +92,22 @@ public class Program {
 	    		    	myaccount.addMoneyToAccount(value, myaccount);
 	    		    	break;	
 	    		    case "7": 
-	    		    	myaccount = mybank.findAccount(1000);
-	    		    	myaccount.removeMoneyFromAccount(250, myaccount);
+	    		    	System.out.println("Vilket konto vill du ta ut pengar ifrån ?: ");
+	    		    	account = Integer.parseInt(input.readLine());
+	    		    	System.out.println("Hur mycket pengar vill du ta ut ?: ");
+	    		    	value = Double.parseDouble(input.readLine());
+	    		    	myaccount = mybank.findAccount(account);
+	    		    	myaccount.removeMoneyFromAccount(value, myaccount);
 	    		    	break;		
 	    		    case "8": 	
+	    		    	System.out.println("Vilket konto vill du flytta pengar ifrån ?: ");
+	    		    	account = Integer.parseInt(input.readLine());
+	    		    	System.out.println("Vilket konto vill du flytta pengar till ?: ");
+	    		    	account2 = Integer.parseInt(input.readLine());
 	    		    	Account  myaccount1;
 	    		    	Account  myaccount2;
-	    		    	myaccount1 = mybank.findAccount(1000);
-	    		    	myaccount2 = mybank.findAccount(1001);
+	    		    	myaccount1 = mybank.findAccount(account);
+	    		    	myaccount2 = mybank.findAccount(account2);
 	    		    	mybank.moveMoneyBetweenAccounts(myaccount1,myaccount2 ,100 );
 	    		    	break;	
 	    		    case "9": 	
