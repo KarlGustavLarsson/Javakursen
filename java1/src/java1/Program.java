@@ -54,7 +54,7 @@ public class Program {
 	    	 while (true) {
 	    		 
 	    		 
-	    		 
+	    		 Account  myaccount;
 	    		 switch (val) {  
 	    		    case "1":
 	    		    	mybank.addAccount("Kalle Karlsson"); 
@@ -66,18 +66,20 @@ public class Program {
 	    		    	mybank.showAllAccontSaldo(mybank.bankaccounts);
 	    		    	break;
 	    		    case "4": 
-	    		    	Account myaccount = mybank.findAccount(1000);
+	    		    	myaccount = mybank.findAccount(1000);
 	    		    	mybank.showAccountSaldo(myaccount);
 	    		    	break;
 	    		    case "5": 
-	    	
+	    		    	myaccount = mybank.findAccount(1000);
+	    		    	myaccount.printTransHistory(myaccount.history);
 	    		    	break;
 	    		    case "6": 
-	    		    	Account  myaccount1 = mybank.findAccount(1000);
-	    		    	myaccount1.addMoneyToAccount(550, myaccount1);
+	    		    	myaccount = mybank.findAccount(1000);
+	    		    	myaccount.addMoneyToAccount(550, myaccount);
 	    		    	break;	
-	    		    case "7": 	
-	    		    	
+	    		    case "7": 
+	    		    	myaccount = mybank.findAccount(1000);
+	    		    	myaccount.removeMoneyFromAccount(250, myaccount);
 	    		    	break;		
 	    		    case "8": 	
 	    		    	
