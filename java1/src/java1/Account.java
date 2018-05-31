@@ -10,6 +10,7 @@ public class Account {
 	public String customerName;
 	String remove="Uttag: ";
 	String add   ="Insättning: ";
+	String name  = "Konto: ";
 	public ArrayList<String> history = new ArrayList<String>(); 
 
 	
@@ -42,10 +43,12 @@ public class Account {
 	}
 
 	public void removeMoneyFromAccount(double removemoney, Account account) {
-		
-		account.balance -= removemoney;
-		
-		addToHistory(remove + removemoney + " kr från konto "  + account.getAccountNo());
+		if (!lock) {
+		   account.balance -= removemoney;
+		   addToHistory(remove + removemoney + " kr från konto "  + account.getAccountNo());
+		} else {
+		  System.out.println(name + account.getAccountNo() + " spärrat för uttag ");
+		}
 	}
 
 	public void addMoneyToAccount(double addmoney, Account account) {

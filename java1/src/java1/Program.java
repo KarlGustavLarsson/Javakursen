@@ -82,7 +82,11 @@ public class Program {
 	    		    	myaccount.removeMoneyFromAccount(250, myaccount);
 	    		    	break;		
 	    		    case "8": 	
-	    		    	
+	    		    	Account  myaccount1;
+	    		    	Account  myaccount2;
+	    		    	myaccount1 = mybank.findAccount(1000);
+	    		    	myaccount2 = mybank.findAccount(1001);
+	    		    	mybank.moveMoneyBetweenAccounts(myaccount1,myaccount2 ,100 );
 	    		    	break;	
 	    		    case "9": 	
 	    		    	myaccount = mybank.findAccount(1000);
