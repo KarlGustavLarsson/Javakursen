@@ -71,39 +71,82 @@ public class Program {
 	    		    	System.out.println("Vilket konto vill du välja: ");
 						try {
 							account = Integer.parseInt(input.readLine());
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						} catch (NumberFormatException e) {
+							System.out.println("Kontnr måste anges med siffror ");
+							continue;
 						}
-		    	    	
 	    		    	myaccount = mybank.findAccount(account);
 	    		    	mybank.showAccountSaldo(myaccount);
 	    		    	break;
 	    		    case "5": 
-	    		    	myaccount = mybank.findAccount(1000);
+	    		    	System.out.println("Vilket konto vill du se transaktionshistorik för ?: ");
+	    		    	try {
+							account = Integer.parseInt(input.readLine());
+						} catch (NumberFormatException e) {
+							System.out.println("Kontnr måste anges med siffror ");
+							continue;
+						
+						}
+	    		    	myaccount = mybank.findAccount(account);
 	    		    	myaccount.printTransHistory(myaccount.history);
 	    		    	break;
 	    		    case "6": 
 	    		    	System.out.println("Vilket konto vill du sätta in pengar till: ");
-	    		    	account = Integer.parseInt(input.readLine());
+						try {
+							account = Integer.parseInt(input.readLine());
+						} catch (NumberFormatException e) {
+							System.out.println("Kontnr måste anges med siffror ");
+							continue;
+						
+						}
 	    		    	System.out.println("Hur mycket pengar vill du sätta in ?: ");
-	    		    	value = Double.parseDouble(input.readLine());
+	    		    	try {
+	    		    		value = Double.parseDouble(input.readLine());
+						} catch (NumberFormatException e) {
+							System.out.println("Belopp måste anges med siffror");
+							continue;
+						
+						}
 	    		    	myaccount = mybank.findAccount(account);
 	    		    	myaccount.addMoneyToAccount(value, myaccount);
 	    		    	break;	
 	    		    case "7": 
 	    		    	System.out.println("Vilket konto vill du ta ut pengar ifrån ?: ");
-	    		    	account = Integer.parseInt(input.readLine());
+	    		    	try {
+							account = Integer.parseInt(input.readLine());
+						} catch (NumberFormatException e) {
+							System.out.println("Kontnr måste anges med siffror ");
+							continue;
+						
+						}
 	    		    	System.out.println("Hur mycket pengar vill du ta ut ?: ");
-	    		    	value = Double.parseDouble(input.readLine());
+	    		    	try {
+	    		    		value = Double.parseDouble(input.readLine());
+						} catch (NumberFormatException e) {
+							System.out.println("Belopp måste anges med siffror");
+							continue;
+						
+						}
 	    		    	myaccount = mybank.findAccount(account);
 	    		    	myaccount.removeMoneyFromAccount(value, myaccount);
 	    		    	break;		
 	    		    case "8": 	
 	    		    	System.out.println("Vilket konto vill du flytta pengar ifrån ?: ");
-	    		    	account = Integer.parseInt(input.readLine());
+	    		    	try {
+							account = Integer.parseInt(input.readLine());
+						} catch (NumberFormatException e) {
+							System.out.println("Kontnr måste anges med siffror ");
+							continue;
+						
+						}
 	    		    	System.out.println("Vilket konto vill du flytta pengar till ?: ");
-	    		    	account2 = Integer.parseInt(input.readLine());
+	    		    	try {
+	    		    		account2 = Integer.parseInt(input.readLine());
+						} catch (NumberFormatException e) {
+							System.out.println("Kontnr måste anges med siffror ");
+							continue;
+						
+						}
 	    		    	Account  myaccount1;
 	    		    	Account  myaccount2;
 	    		    	myaccount1 = mybank.findAccount(account);
@@ -112,7 +155,13 @@ public class Program {
 	    		    	break;	
 	    		    case "9": 	
 	    		    	System.out.println("Vilket konto vill du spårra för uttag ?: ");
-	    		    	account = Integer.parseInt(input.readLine());
+	    		    	try {
+	    		    		account = Integer.parseInt(input.readLine());
+						} catch (NumberFormatException e) {
+							System.out.println("Kontnr måste anges med siffror ");
+							continue;
+						
+						}
 	    		    	myaccount = mybank.findAccount(account);
 	    		    	myaccount.lockAccont(true, myaccount);
 	    		    	break;		
