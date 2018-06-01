@@ -8,10 +8,6 @@ public class Bank {
 	
 	public int accountno=999;
 
-	public double accountSaldo(int accountnumber) {
-		   double saldo=0;
-		    return saldo;
-	}
 	
 
 	public boolean addAccount(String name) {

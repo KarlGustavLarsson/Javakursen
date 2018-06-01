@@ -147,11 +147,19 @@ public class Program {
 							continue;
 						
 						}
+	    		    	System.out.println("Hur mycket pengar vill flytta ?: ");
+	    		    	try {
+	    		    		value = Double.parseDouble(input.readLine());
+						} catch (NumberFormatException e) {
+							System.out.println("Belopp måste anges med siffror");
+							continue;
+						
+						}
 	    		    	Account  myaccount1;
 	    		    	Account  myaccount2;
 	    		    	myaccount1 = mybank.findAccount(account);
 	    		    	myaccount2 = mybank.findAccount(account2);
-	    		    	mybank.moveMoneyBetweenAccounts(myaccount1,myaccount2 ,100 );
+	    		    	mybank.moveMoneyBetweenAccounts(myaccount1,myaccount2 ,value);
 	    		    	break;	
 	    		    case "9": 	
 	    		    	System.out.println("Vilket konto vill du spårra för uttag ?: ");

@@ -44,7 +44,10 @@ public class Account {
 
 	public void removeMoneyFromAccount(double removemoney, Account account) {
 		if (!lock) {
-		   account.balance -= removemoney;
+		   synchronized(this) {
+		      account.balance -= removemoney;
+		   }
+		   
 		   addToHistory(remove + removemoney + " kr från konto "  + account.getAccountNo());
 		} else {
 		  System.out.println(name + account.getAccountNo() + " spärrat för uttag ");
@@ -53,7 +56,9 @@ public class Account {
 
 	public void addMoneyToAccount(double addmoney, Account account) {
 		
-		this.balance += addmoney;
+		 synchronized(this) {
+			 this.balance += addmoney;			   
+		 }
 		
 		addToHistory(add + addmoney + " kr till konto "  + account.getAccountNo());
 		
