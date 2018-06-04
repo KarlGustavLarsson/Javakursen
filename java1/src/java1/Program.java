@@ -12,6 +12,7 @@ public class Program {
 		int account=0; 
 		int account2=0; 
 		double value=0; 
+		boolean good = false;
 		Bank mybank = new Bank();
 		
 		BufferedReader input = new BufferedReader( new InputStreamReader(System.in));
@@ -76,7 +77,11 @@ public class Program {
 							continue;
 						}
 	    		    	myaccount = mybank.findAccount(account);
-	    		    	mybank.showAccountSaldo(myaccount);
+	    		    	if (myaccount != null) {  
+	    		    	   mybank.showAccountSaldo(myaccount);
+	    		    	} else { 
+	    		    		System.out.println("Kontnr " + account + " saknas ! ");
+	    		    	}
 	    		    	break;
 	    		    case "5": 
 	    		    	System.out.println("Vilket konto vill du se transaktionshistorik för ?: ");
@@ -88,7 +93,11 @@ public class Program {
 						
 						}
 	    		    	myaccount = mybank.findAccount(account);
-	    		    	myaccount.printTransHistory(myaccount.history);
+	    		    	if (myaccount != null ) {
+	    		    	   myaccount.printTransHistory(myaccount.history);
+	    		        } else { 
+	    		        	System.out.println("Kontnr " + account + " saknas ! ");
+	    		        }
 	    		    	break;
 	    		    case "6": 
 	    		    	System.out.println("Vilket konto vill du sätta in pengar till: ");
@@ -102,13 +111,22 @@ public class Program {
 	    		    	System.out.println("Hur mycket pengar vill du sätta in ?: ");
 	    		    	try {
 	    		    		value = Double.parseDouble(input.readLine());
+	    		    		if (!checkAmount(value)) {  
+		    		    		System.out.println("Belopp måste vara större än 0");
+		    		    		break;
+		    		    	}
+	    		   
 						} catch (NumberFormatException e) {
 							System.out.println("Belopp måste anges med siffror");
 							continue;
 						
 						}
 	    		    	myaccount = mybank.findAccount(account);
-	    		    	myaccount.addMoneyToAccount(value, myaccount);
+	    		    	if (myaccount != null ) {
+	    		    	   myaccount.addMoneyToAccount(value, myaccount);
+	    		    	} else { 
+	    		    		System.out.println("Kontnr " + account + " saknas ! ");
+	    		    	}
 	    		    	break;	
 	    		    case "7": 
 	    		    	System.out.println("Vilket konto vill du ta ut pengar ifrån ?: ");
@@ -122,13 +140,22 @@ public class Program {
 	    		    	System.out.println("Hur mycket pengar vill du ta ut ?: ");
 	    		    	try {
 	    		    		value = Double.parseDouble(input.readLine());
+	    		    		if (!checkAmount(value)) {  
+		    		    		System.out.println("Belopp måste vara större än 0");
+		    		    		break;
+		    		    	}
 						} catch (NumberFormatException e) {
 							System.out.println("Belopp måste anges med siffror");
 							continue;
 						
 						}
+	    		    
 	    		    	myaccount = mybank.findAccount(account);
-	    		    	myaccount.removeMoneyFromAccount(value, myaccount);
+	    		    	if (myaccount != null ) {
+	    		    	   myaccount.removeMoneyFromAccount(value, myaccount);
+	    		    	} else { 
+	    		    		System.out.println("Kontnr " + account + " saknas !");
+	    		    	}
 	    		    	break;		
 	    		    case "8": 	
 	    		    	System.out.println("Vilket konto vill du flytta pengar ifrån ?: ");
@@ -150,16 +177,27 @@ public class Program {
 	    		    	System.out.println("Hur mycket pengar vill flytta ?: ");
 	    		    	try {
 	    		    		value = Double.parseDouble(input.readLine());
+	    		    		if (!checkAmount(value)) {  
+		    		    		System.out.println("Belopp måste vara större än 0");
+		    		    		break;
+		    		    	}
 						} catch (NumberFormatException e) {
 							System.out.println("Belopp måste anges med siffror");
 							continue;
 						
 						}
+	    		    	
 	    		    	Account  myaccount1;
 	    		    	Account  myaccount2;
 	    		    	myaccount1 = mybank.findAccount(account);
 	    		    	myaccount2 = mybank.findAccount(account2);
-	    		    	mybank.moveMoneyBetweenAccounts(myaccount1,myaccount2 ,value);
+	    		    	if ( myaccount1 != null && myaccount2 != null) {
+	    		    	    mybank.moveMoneyBetweenAccounts(myaccount1,myaccount2 ,value);
+	    		    	} else if (myaccount1 == null )   {  
+	    		    		System.out.println("Kontnr " + account + " saknas !");
+	    		    	} else if (myaccount2 == null ) { 
+	    		    		System.out.println("Kontnr " + account2 + " saknas !");
+	    		    	}
 	    		    	break;	
 	    		    case "9": 	
 	    		    	System.out.println("Vilket konto vill du spårra för uttag ?: ");
@@ -171,7 +209,11 @@ public class Program {
 						
 						}
 	    		    	myaccount = mybank.findAccount(account);
-	    		    	myaccount.lockAccont(true, myaccount);
+	    		      	if (myaccount != null ) {
+	    		    	   myaccount.lockAccont(true, myaccount);
+	    		      	} else { 
+	    		      	   System.out.println("Kontnr " + account + " saknas !");
+	    		      	}
 	    		    	break;		
 	    		 
 	    		    default:
@@ -192,8 +234,11 @@ public class Program {
 
 	}
 
-	public void print() {
-		// TODO Auto-generated method stub
+	public static boolean checkAmount(double amount) {
+		
+		if (amount <= 0 ) {
+			return false;
+		} else return true;
 		
 	}
 
