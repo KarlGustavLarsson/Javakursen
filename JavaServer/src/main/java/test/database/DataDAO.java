@@ -5,10 +5,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import test.Movie;
-import test.Show;
+
+
 import test.Test;
-import test.Theatre;
+
 import test.Book;
 import java.util.List;
 
@@ -26,12 +26,7 @@ public class DataDAO implements IDataDAO {
         return jdbcTemplate.query(query, new TestRowMapper());
     }
 
-	@Override
-	public List<Show> fetchShows() {
-		// TODO Auto-generated method stub
-		String query = "SELECT * from show";
-        return jdbcTemplate.query(query, new ShowMapper());
-	}
+
 
 	
 	@Override
@@ -43,21 +38,18 @@ public class DataDAO implements IDataDAO {
 	} 
 	
 	@Override
+	public void addbook(Book book) {
+		
+		jdbcTemplate.update(
+			    "INSERT INTO library.book (title, author,published) VALUES (?,?,?)", book.getTitle(),book.getAuthor(),book.getPublished());
+        
+	} 
+	
+	@Override
 	public List<Test> getCinema() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public List<Movie> fetchMovies() {
-		String query = "Select * from movie";
-		return jdbcTemplate.query(query, new MovieMapper());
-	}
-
-	@Override
-	public List<Theatre> fetchTheatres() {
-		String query = "Select * from theatre";
-		return jdbcTemplate.query(query, new TheatreMapper());
-	}
-
+	
 }
