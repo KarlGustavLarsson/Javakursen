@@ -87,7 +87,7 @@ public class MainController {
     	
     	dataDao.addbook(book);
     	//model.put("addbook", dataDao.addbook(title, author, published));
-        return "books";
+        return "redirect:/books";
     }
     
     @GetMapping("/index")
