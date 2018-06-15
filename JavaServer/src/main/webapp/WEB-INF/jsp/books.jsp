@@ -24,6 +24,8 @@
 <header>
 [<a href="/books">Visa boklista</a>]
 [<a href="/addbook">Lägg till ny bok</a>] 
+[<a href="#">Sök bok</a>] 
+[<a href="#">Ändra bok</a>] 
 </header>
 	
 	
