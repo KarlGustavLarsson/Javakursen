@@ -46,6 +46,15 @@ public class DataDAO implements IDataDAO {
 	} 
 	
 	@Override
+	public int update(Book book){  
+		String SQL = "update library.book set title = ?, author = ? , published = ?  where id = ?";
+		
+	      return jdbcTemplate.update(SQL, book.getTitle(), book.getAuthor(), book.getPublished(), book.getId());
+		     
+    }  
+
+	
+	@Override
 	public List<Test> getCinema() {
 		// TODO Auto-generated method stub
 		return null;
