@@ -15,11 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
+import org.springframework.web.servlet.ModelAndView;
 
 import test.Test;
 
@@ -89,6 +89,18 @@ public class MainController {
     	//model.put("addbook", dataDao.addbook(title, author, published));
         return "redirect:/books";
     }
+    
+    
+    /* It displays object data into form for the given id.  
+         * The @PathVariable puts URL data into variable.*/  
+        @GetMapping(value="/editbook/{id}")  
+        public String edit(Map<String, Object> model, @ModelAttribute("Book")Book book, @PathVariable int id){  
+            book = dataDao.getBookById(id); 
+            System.out.println(book.getAuthor());
+            model.put("book", book);
+            return  "edit";  
+       }  
+
     
     @GetMapping("/index")
     public String index(Map<String, Object> model, String query1) {

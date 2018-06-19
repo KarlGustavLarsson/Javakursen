@@ -44,6 +44,7 @@
         		<td>${book.getTitle()}</td> 
         		<td>${book.getAuthor()}</td>
         		<td>${book.getPublished()}</td>
+        		<td><a href="editbook/${book.getId()}">Edit</a></td>  
         		</tr>
         	</c:forEach>
       		

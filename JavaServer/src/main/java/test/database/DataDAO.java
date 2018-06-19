@@ -52,6 +52,19 @@ public class DataDAO implements IDataDAO {
 	      return jdbcTemplate.update(SQL, book.getTitle(), book.getAuthor(), book.getPublished(), book.getId());
 		     
     }  
+	
+	@Override
+	public int delete(int id){  
+		   String sql="delete fromlibrary.book where id="+id+"";  
+		    return jdbcTemplate.update(sql);  
+	} 
+	
+	@Override
+	public Book getBookById(int id){  
+	    String sql="select * from library.book where id=?";  
+	    return jdbcTemplate.queryForObject(sql, new Object[]{id},new BookMapper());  
+	}  
+
 
 	
 	@Override

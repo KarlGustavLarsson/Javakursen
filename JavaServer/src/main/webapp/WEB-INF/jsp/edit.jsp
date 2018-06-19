@@ -26,24 +26,22 @@
 
 <h3>Välkommen, Uppdatera bok</h3>
 
-<form:form method="POST" action="/addbook" modelAttribute="Book">
+<form:form method="POST" action="/addbook" modelAttribute="Book"> 
          <table>
             <tr>
                 <td><form:label path="title">Boktitel</form:label></td>
-                <td><form:input path="title"/></td>
+                <td><form:input value="${bookx.getTitle()}" path="title"/></td>                           
             </tr>
             <tr>
                 <td><form:label path="author">Författare</form:label></td>
-                <td><form:input path="author"/></td>
+                <td><form:input value="${bookx.getAuthor()}" path="author"/></td>
             </tr>
             <tr>
                 <td><form:label path="published">Utgivningsår</form:label></td>
-                <td><form:input path="published"/></td>
+                <td><form:input value="${bookx.getPublished()}" path="published"/></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Submit"/></td>
             </tr>
         </table>
   </form:form>
-
-  
