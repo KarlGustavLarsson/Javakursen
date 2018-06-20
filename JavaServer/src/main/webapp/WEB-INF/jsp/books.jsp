@@ -24,8 +24,6 @@
 <header>
 [<a href="/books">Visa boklista</a>]
 [<a href="/addbook">Lägg till ny bok</a>] 
-[<a href="#">Sök bok</a>] 
-[<a href="#">Ändra bok</a>] 
 </header>
 	
 	
@@ -44,7 +42,8 @@
         		<td>${book.getTitle()}</td> 
         		<td>${book.getAuthor()}</td>
         		<td>${book.getPublished()}</td>
-        		<td><a href="editbook/${book.getId()}">Edit</a></td>  
+        		<td><a href="editbook/${book.getId()}">Ändra</a></td> 
+        		<td><a href="deletebook/${book.getId()}">Ta bort</a></td> 
         		</tr>
         	</c:forEach>
       		

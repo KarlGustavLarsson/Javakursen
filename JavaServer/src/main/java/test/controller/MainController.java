@@ -96,10 +96,24 @@ public class MainController {
         @GetMapping(value="/editbook/{id}")  
         public String edit(Map<String, Object> model, @ModelAttribute("Book")Book book, @PathVariable int id){  
             book = dataDao.getBookById(id); 
-            System.out.println(book.getAuthor());
             model.put("book", book);
             return  "edit";  
        }  
+        
+         
+        @PostMapping(value="/editbook/{id}")  
+        public String save(Map<String, Object> model, @ModelAttribute("Book")Book book, @PathVariable int id){  
+            dataDao.update(book); 
+            return  "redirect:/books";
+       }  
+        
+        @RequestMapping(value="/deletebook/{id}",method = RequestMethod.GET)  
+           public String delete(@PathVariable int id){  
+        	dataDao.delete(id);  
+            return  "redirect:/books"; 
+         }  
+
+   
 
     
     @GetMapping("/index")
