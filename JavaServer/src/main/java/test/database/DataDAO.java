@@ -55,7 +55,7 @@ public class DataDAO implements IDataDAO {
 	
 	@Override
 	public int delete(int id){  
-		   String sql="delete fromlibrary.book where id="+id+"";  
+		   String sql="delete from library.book where id="+id+"";  
 		    return jdbcTemplate.update(sql);  
 	} 
 	
