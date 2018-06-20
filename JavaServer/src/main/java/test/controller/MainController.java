@@ -69,51 +69,41 @@ public class MainController {
     @GetMapping("/addbook")
     public  String addbookget(@ModelAttribute("Book")Book book) {
     	
-    	/* model.addAttribute("title", book.getTitle());
-        model.addAttribute("author", book.getAuthor());
-        model.addAttribute("published", book.getPublished()); */
     	
-    	//dataDao.addbook(book);
-    	//model.put("addbook", dataDao.addbook(title, author, published));
          return "addbook";
     }
     
     @PostMapping("/addbook")
     public String addbook(@Valid @ModelAttribute("Book")Book book) {
     	
-    	/* model.addAttribute("title", book.getTitle());
-        model.addAttribute("author", book.getAuthor());
-        model.addAttribute("published", book.getPublished()); */
-    	
+    
     	dataDao.addbook(book);
-    	//model.put("addbook", dataDao.addbook(title, author, published));
+    	
         return "redirect:/books";
     }
     
     
     /* It displays object data into form for the given id.  
          * The @PathVariable puts URL data into variable.*/  
-        @GetMapping(value="/editbook/{id}")  
-        public String edit(Map<String, Object> model, @ModelAttribute("Book")Book book, @PathVariable int id){  
-            book = dataDao.getBookById(id); 
-            model.put("book", book);
-            return  "edit";  
-       }  
+    @GetMapping(value="/editbook/{id}")  
+    public String edit(Map<String, Object> model, @ModelAttribute("Book")Book book, @PathVariable int id){  
+        book = dataDao.getBookById(id); 
+        model.put("book", book);
+       return  "edit";  
+    }  
         
          
-        @PostMapping(value="/editbook/{id}")  
-        public String save(Map<String, Object> model, @ModelAttribute("Book")Book book, @PathVariable int id){  
-            dataDao.update(book); 
-            return  "redirect:/books";
-       }  
+     @PostMapping(value="/editbook/{id}")  
+     public String save(Map<String, Object> model, @ModelAttribute("Book")Book book, @PathVariable int id){  
+         dataDao.update(book); 
+         return  "redirect:/books";
+     }  
         
-        @RequestMapping(value="/deletebook/{id}",method = RequestMethod.GET)  
-           public String delete(@PathVariable int id){  
-        	dataDao.delete(id);  
-            return  "redirect:/books"; 
-         }  
-
-   
+     @RequestMapping(value="/deletebook/{id}",method = RequestMethod.GET)  
+     public String delete(@PathVariable int id){  
+         dataDao.delete(id);  
+         return  "redirect:/books"; 
+     }  
 
     
     @GetMapping("/index")
