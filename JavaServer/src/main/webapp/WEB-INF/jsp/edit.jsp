@@ -26,8 +26,11 @@
 
 <h3>Välkommen, Uppdatera bok</h3>
 
-<form:form method="POST" action="/addbook" modelAttribute="Book"> 
+<form:form method="POST" action="/editsave" modelAttribute="Book"> 
          <table>
+            <tr>
+             <td><form:input id="id"  hidden="true" path="id"/></td>
+             <tr>
             <tr>
                 <td><form:label path="title">Boktitel</form:label></td>
                 <td><form:input value="${book.getTitle()}" path="title"/></td>                           

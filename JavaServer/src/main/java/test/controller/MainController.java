@@ -93,8 +93,8 @@ public class MainController {
     }  
         
          
-     @PostMapping(value="/editbook/{id}")  
-     public String save(Map<String, Object> model, @ModelAttribute("Book")Book book, @PathVariable int id){  
+     @PostMapping(value="/editsave")  
+     public String save(Map<String, Object> model, @ModelAttribute("Book")Book book){  
          dataDao.update(book); 
          return  "redirect:/books";
      }  
