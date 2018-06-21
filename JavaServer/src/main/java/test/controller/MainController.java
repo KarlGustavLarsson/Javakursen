@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import test.Test;
@@ -60,10 +61,18 @@ public class MainController {
    
     
     @GetMapping("/books")
-    public String books(Map<String, Object> model, String query1) {
-    	List<Book> theBooks = dataDao.fetchBooks();
-    	model.put("books", theBooks);
-        return "books";
+    public String books(Map<String, Object> model,@RequestParam(name="search", required=false) String search, String query1) {
+    	
+    	System.out.println(search);
+    	
+    	if (search==null) { 
+    	   List<Book> theBooks = dataDao.fetchBooks();
+    	   model.put("books", theBooks);
+    	} else { 
+    	   List<Book> theBooks = dataDao.fetchSelectedBooks(search);
+    	   model.put("books", theBooks);
+    	}
+    	return "books";
     }
     
     @GetMapping("/addbook")

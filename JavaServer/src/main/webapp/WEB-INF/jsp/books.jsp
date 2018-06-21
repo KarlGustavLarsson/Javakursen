@@ -29,6 +29,14 @@
 	
 <div class="container">
  		<h2>Böcker</h2>    
+ 		
+ 		<form action="/books">
+              Sök böcker: <input type="text" name="search"><br>
+              <input type="submit" value="Sök">
+        </form>
+ 		
+ <br>	
+ 		 
   		<table class="table table-condensed">
     		<thead>
       			<th>Titel</th>

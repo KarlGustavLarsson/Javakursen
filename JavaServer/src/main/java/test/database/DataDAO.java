@@ -38,6 +38,21 @@ public class DataDAO implements IDataDAO {
 	} 
 	
 	@Override
+	public List<Book> fetchSelectedBooks(String search) {
+		
+	   //	"SELECT * FROM ARTICLE WHERE TITLE LIKE '%'||:title||'%'";
+	
+		
+	
+		
+        String prepared = "'%" + search + "%'";
+    	String query = "SELECT * from library.book WHERE title LiKE " + prepared;
+
+        return (List<Book>) jdbcTemplate.query(query, new BookMapper());  
+		
+	} 
+	
+	@Override
 	public void addbook(Book book) {
 		
 		jdbcTemplate.update(

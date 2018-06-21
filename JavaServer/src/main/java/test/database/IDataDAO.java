@@ -19,4 +19,5 @@ public interface IDataDAO {
 	public int update(Book book);
 	int delete(int id);
 	Book getBookById(int id);
+	List<Book> fetchSelectedBooks(String search);
 }
